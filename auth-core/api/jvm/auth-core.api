@@ -1,0 +1,446 @@
+public abstract class dev/siere/auth/AuthError {
+	public abstract fun getMessage ()Ljava/lang/String;
+	public abstract fun getProviderCode ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$AuthStateChanged : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$AuthStateChanged;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$AuthStateChanged;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$AuthStateChanged;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$BillingRequired : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$BillingRequired;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$BillingRequired;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$BillingRequired;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$Cancelled : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$Cancelled;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$Cancelled;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$Cancelled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$CredentialAlreadyInUse : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$CredentialAlreadyInUse;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$CredentialAlreadyInUse;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$CredentialAlreadyInUse;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$EmailAlreadyInUse : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$EmailAlreadyInUse;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$EmailAlreadyInUse;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$EmailAlreadyInUse;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$InvalidCredentials : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$InvalidCredentials;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$InvalidCredentials;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$InvalidCredentials;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$InvalidPhoneNumber : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$InvalidPhoneNumber;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$InvalidPhoneNumber;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$InvalidPhoneNumber;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$InvalidVerificationCode : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$InvalidVerificationCode;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$InvalidVerificationCode;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$InvalidVerificationCode;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$Network : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$Network;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$Network;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$Network;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$NotSignedIn : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$NotSignedIn;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$NotSignedIn;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$NotSignedIn;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$PopupBlocked : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$PopupBlocked;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$PopupBlocked;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$PopupBlocked;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$ProviderDisabled : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$ProviderDisabled;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$ProviderDisabled;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$ProviderDisabled;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$RegionBlocked : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$RegionBlocked;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$RegionBlocked;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$RegionBlocked;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$RequiresRecentLogin : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$RequiresRecentLogin;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$RequiresRecentLogin;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$RequiresRecentLogin;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$Unknown : dev/siere/auth/AuthError {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$Unknown;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$Unknown;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$Unknown;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$Unsupported : dev/siere/auth/AuthError {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$Unsupported;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$Unsupported;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$Unsupported;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public final fun getOperation ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public final fun getTarget ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$UserNotFound : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$UserNotFound;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$UserNotFound;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$UserNotFound;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthError$WeakPassword : dev/siere/auth/AuthError {
+	public fun <init> ()V
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthError$WeakPassword;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthError$WeakPassword;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/AuthError$WeakPassword;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun getMessage ()Ljava/lang/String;
+	public fun getProviderCode ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract interface class dev/siere/auth/AuthProvider {
+	public fun close ()V
+	public abstract fun currentSession (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun currentSession$default (Ldev/siere/auth/AuthProvider;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public abstract fun getAuthState ()Lkotlinx/coroutines/flow/StateFlow;
+	public abstract fun linkWithApple (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun linkWithGoogle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun sendPasswordReset (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun signInAnonymously (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun signInWithApple (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun signInWithEmail (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun signInWithGoogle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun signOut (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun signUpWithEmail (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun startPhoneLinking (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun startPhoneSignIn (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class dev/siere/auth/AuthProvider$DefaultImpls {
+	public static fun close (Ldev/siere/auth/AuthProvider;)V
+	public static synthetic fun currentSession$default (Ldev/siere/auth/AuthProvider;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
+public abstract class dev/siere/auth/AuthResult {
+	public final fun errorOrNull ()Ldev/siere/auth/AuthError;
+	public final fun getOrNull ()Ljava/lang/Object;
+	public final fun isSuccess ()Z
+}
+
+public final class dev/siere/auth/AuthResult$Failure : dev/siere/auth/AuthResult {
+	public fun <init> (Ldev/siere/auth/AuthError;)V
+	public final fun component1 ()Ldev/siere/auth/AuthError;
+	public final fun copy (Ldev/siere/auth/AuthError;)Ldev/siere/auth/AuthResult$Failure;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthResult$Failure;Ldev/siere/auth/AuthError;ILjava/lang/Object;)Ldev/siere/auth/AuthResult$Failure;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getError ()Ldev/siere/auth/AuthError;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthResult$Success : dev/siere/auth/AuthResult {
+	public fun <init> (Ljava/lang/Object;)V
+	public final fun component1 ()Ljava/lang/Object;
+	public final fun copy (Ljava/lang/Object;)Ldev/siere/auth/AuthResult$Success;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthResult$Success;Ljava/lang/Object;ILjava/lang/Object;)Ldev/siere/auth/AuthResult$Success;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getValue ()Ljava/lang/Object;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthResultKt {
+	public static final fun map (Ldev/siere/auth/AuthResult;Lkotlin/jvm/functions/Function1;)Ldev/siere/auth/AuthResult;
+	public static final fun onFailure (Ldev/siere/auth/AuthResult;Lkotlin/jvm/functions/Function1;)Ldev/siere/auth/AuthResult;
+	public static final fun onSuccess (Ldev/siere/auth/AuthResult;Lkotlin/jvm/functions/Function1;)Ldev/siere/auth/AuthResult;
+}
+
+public final class dev/siere/auth/AuthSession {
+	public fun <init> (Ldev/siere/auth/AuthUser;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)V
+	public synthetic fun <init> (Ldev/siere/auth/AuthUser;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ldev/siere/auth/AuthUser;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/Long;
+	public final fun copy (Ldev/siere/auth/AuthUser;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;)Ldev/siere/auth/AuthSession;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthSession;Ldev/siere/auth/AuthUser;Ljava/lang/String;Ljava/lang/String;Ljava/lang/Long;ILjava/lang/Object;)Ldev/siere/auth/AuthSession;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAccessToken ()Ljava/lang/String;
+	public final fun getExpiresAtEpochMillis ()Ljava/lang/Long;
+	public final fun getRefreshToken ()Ljava/lang/String;
+	public final fun getUser ()Ldev/siere/auth/AuthUser;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class dev/siere/auth/AuthState {
+}
+
+public final class dev/siere/auth/AuthState$Loading : dev/siere/auth/AuthState {
+	public static final field INSTANCE Ldev/siere/auth/AuthState$Loading;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthState$SignedIn : dev/siere/auth/AuthState {
+	public fun <init> (Ldev/siere/auth/AuthUser;)V
+	public final fun component1 ()Ldev/siere/auth/AuthUser;
+	public final fun copy (Ldev/siere/auth/AuthUser;)Ldev/siere/auth/AuthState$SignedIn;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthState$SignedIn;Ldev/siere/auth/AuthUser;ILjava/lang/Object;)Ldev/siere/auth/AuthState$SignedIn;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getUser ()Ldev/siere/auth/AuthUser;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthState$SignedOut : dev/siere/auth/AuthState {
+	public static final field INSTANCE Ldev/siere/auth/AuthState$SignedOut;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/AuthUser {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Z
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/lang/String;
+	public final fun component7 ()Z
+	public final fun component8 ()Ljava/util/List;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;)Ldev/siere/auth/AuthUser;
+	public static synthetic fun copy$default (Ldev/siere/auth/AuthUser;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZLjava/lang/String;Ljava/lang/String;ZLjava/util/List;ILjava/lang/Object;)Ldev/siere/auth/AuthUser;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getDisplayName ()Ljava/lang/String;
+	public final fun getEmail ()Ljava/lang/String;
+	public final fun getPhoneNumber ()Ljava/lang/String;
+	public final fun getPhotoUrl ()Ljava/lang/String;
+	public final fun getProviderIds ()Ljava/util/List;
+	public final fun getUid ()Ljava/lang/String;
+	public fun hashCode ()I
+	public final fun isAnonymous ()Z
+	public final fun isEmailVerified ()Z
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/DefaultDispatcherProvider : dev/siere/auth/DispatcherProvider {
+	public fun <init> ()V
+	public fun getDefault ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public fun getIo ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public fun getMain ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public fun getUnconfined ()Lkotlinx/coroutines/CoroutineDispatcher;
+}
+
+public abstract interface class dev/siere/auth/DispatcherProvider {
+	public abstract fun getDefault ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public abstract fun getIo ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public abstract fun getMain ()Lkotlinx/coroutines/CoroutineDispatcher;
+	public abstract fun getUnconfined ()Lkotlinx/coroutines/CoroutineDispatcher;
+}
+
+public abstract interface class dev/siere/auth/PhoneVerificationSession {
+	public abstract fun confirm (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun getPhoneNumber ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/SiereAuth {
+	public fun <init> (Ldev/siere/auth/AuthProvider;)V
+	public final fun close ()V
+	public final fun currentSession (ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun currentSession$default (Ldev/siere/auth/SiereAuth;ZLkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+	public final fun getAuthState ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun getCurrentUser ()Ldev/siere/auth/AuthUser;
+	public final fun linkWithApple (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun linkWithGoogle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun sendPasswordReset (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun signInAnonymously (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun signInWithApple (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun signInWithEmail (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun signInWithGoogle (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun signOut (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun signUpWithEmail (Ljava/lang/String;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun startPhoneLinking (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun startPhoneSignIn (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+

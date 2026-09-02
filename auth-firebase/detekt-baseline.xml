@@ -1,0 +1,63 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>CyclomaticComplexMethod:FirebaseErrorMapping.kt$internal fun firebaseAuthError(rawMessage: String?): AuthError</ID>
+    <ID>FunctionNaming:AndroidFirebaseAuthProvider.kt$public fun FirebaseAuthProvider( activityProvider: AndroidActivityProvider, googleServerClientId: String? = null, dispatcherProvider: DispatcherProvider = dev.siere.auth.DefaultDispatcherProvider(), ): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:AndroidFirebaseAuthProvider.kt$public fun FirebaseAuthProvider(): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:AndroidFirebaseAuthProvider.kt$public fun FirebaseAuthProvider(dispatcherProvider: DispatcherProvider): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:IosFirebaseAuthProvider.kt$public fun FirebaseAuthProvider( googleSignIn: GoogleSignInPresenter? = null, dispatcherProvider: dev.siere.auth.DispatcherProvider = dev.siere.auth.DefaultDispatcherProvider(), applePresentationAnchorProvider: ApplePresentationAnchorProvider = ApplePresentationAnchorProvider { UIApplication.sharedApplication.keyWindow }, ): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:JsFirebaseAuthProvider.kt$public fun FirebaseAuthProvider( options: FirebaseWebOptions, dispatcherProvider: dev.siere.auth.DispatcherProvider = dev.siere.auth.DefaultDispatcherProvider(), ): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:JvmFirebaseAuthProvider.kt$public fun FirebaseAuthProvider(): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:JvmFirebaseAuthProvider.kt$public fun FirebaseAuthProvider(dispatcherProvider: dev.siere.auth.DispatcherProvider): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:WasmFirebaseAuthProvider.kt$public fun FirebaseAuthProvider(options: FirebaseWebOptions): dev.siere.auth.AuthProvider</ID>
+    <ID>LongParameterList:FirebaseUserMapping.kt$( uid: String, displayName: String?, email: String?, isEmailVerified: Boolean, photoUrl: String?, phoneNumber: String?, isAnonymous: Boolean, providerIds: Iterable&lt;String&gt;, )</ID>
+    <ID>MagicNumber:AndroidFirebaseAuthProvider.kt$AndroidFirebaseAuthProvider$60L</ID>
+    <ID>MagicNumber:IosFirebaseAuthProvider.kt$16</ID>
+    <ID>MagicNumber:IosFirebaseAuthProvider.kt$63</ID>
+    <ID>MatchingDeclarationName:ExpectedUserGuard.kt$FirebaseAuthStateChangedException : IllegalStateException</ID>
+    <ID>MatchingDeclarationName:WasmFirebaseApp.kt$FirebaseApp : JsAny</ID>
+    <ID>MaxLineLength:AndroidFirebaseAuthProvider.kt$public</ID>
+    <ID>MaxLineLength:FirebaseErrorMappingTest.kt$FirebaseErrorMappingTest$"Firebase: SMS unable to be sent until this region enabled by the app developer. (auth/operation-not-allowed)."</ID>
+    <ID>MaxLineLength:FirebaseErrorMappingTest.kt$FirebaseErrorMappingTest$assertIs&lt;AuthError.CredentialAlreadyInUse&gt;(firebaseAuthError("Firebase: Error (auth/credential-already-in-use)."))</ID>
+    <ID>MaxLineLength:FirebaseErrorMappingTest.kt$FirebaseErrorMappingTest$assertIs&lt;AuthError.InvalidVerificationCode&gt;(firebaseAuthError("Firebase: Error (auth/invalid-verification-code)."))</ID>
+    <ID>MaxLineLength:GitLiveFirebaseAuthProvider.kt$GitLiveFirebaseAuthProvider$override suspend fun startPhoneLinking(phoneNumber: String): AuthResult&lt;PhoneVerificationSession&gt;</ID>
+    <ID>MaxLineLength:GitLiveFirebaseAuthProvider.kt$GitLiveFirebaseAuthProvider$override suspend fun startPhoneSignIn(phoneNumber: String): AuthResult&lt;PhoneVerificationSession&gt;</ID>
+    <ID>MaxLineLength:IosFirebaseAuthProvider.kt$AppleSignInDelegate$override</ID>
+    <ID>MaxLineLength:JvmFirebaseAuthProvider.kt$public</ID>
+    <ID>MaxLineLength:WasmFirebaseAuthProvider.kt$private fun disableAppVerificationForTesting(auth: Auth): Unit</ID>
+    <ID>MaxLineLength:WasmFirebaseAuthProvider.kt$public</ID>
+    <ID>ReturnCount:AndroidFirebaseAuthProvider.kt$AndroidFirebaseAuthProvider$private suspend fun startPhoneVerification( phoneNumber: String, linking: Boolean, ): AuthResult&lt;PhoneVerificationSession&gt;</ID>
+    <ID>ReturnCount:AndroidFirebaseAuthProvider.kt$AndroidFirebaseAuthProvider$private suspend fun withAppleProvider(linking: Boolean): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>ReturnCount:AndroidFirebaseAuthProvider.kt$AndroidFirebaseAuthProvider$private suspend fun withGoogleCredential(linking: Boolean): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>ReturnCount:IosFirebaseAuthProvider.kt$IosFirebaseAuthProvider$private suspend fun withGoogleCredential(expectedUid: String?): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>TooGenericExceptionCaught:AndroidFirebaseAuthProvider.kt$AndroidFirebaseAuthProvider$failure: Throwable</ID>
+    <ID>TooGenericExceptionCaught:AndroidFirebaseAuthProvider.kt$failure: Throwable</ID>
+    <ID>TooGenericExceptionCaught:FirebaseErrorMapping.kt$failure: Throwable</ID>
+    <ID>TooGenericExceptionCaught:IosFirebaseAuthProvider.kt$IosFirebaseAuthProvider$failure: Throwable</ID>
+    <ID>TooGenericExceptionCaught:IosFirebaseAuthProvider.kt$failure: Throwable</ID>
+    <ID>TooGenericExceptionCaught:WasmFirebaseAuthProvider.kt$failure: Throwable</ID>
+    <ID>TooManyFunctions:AndroidFirebaseAuthProvider.kt$AndroidFirebaseAuthProvider : GitLiveFirebaseAuthProvider</ID>
+    <ID>TooManyFunctions:GitLiveFirebaseAuthProvider.kt$GitLiveFirebaseAuthProvider : AuthProvider</ID>
+    <ID>TooManyFunctions:IosFirebaseAuthProvider.kt$IosFirebaseAuthProvider : GitLiveFirebaseAuthProvider</ID>
+    <ID>TooManyFunctions:JsFirebaseAuthProvider.kt$JsFirebaseAuthProvider : GitLiveFirebaseAuthProvider</ID>
+    <ID>TooManyFunctions:WasmFirebaseAuthExternals.kt$dev.siere.auth.firebase.WasmFirebaseAuthExternals.kt</ID>
+    <ID>TooManyFunctions:WasmFirebaseAuthProvider.kt$WasmFirebaseAuthProvider : AuthProvider</ID>
+    <ID>TooManyFunctions:WasmFirebaseAuthProvider.kt$dev.siere.auth.firebase.WasmFirebaseAuthProvider.kt</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$apiKey: String</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$appId: String</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$auth: Auth</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$authDomain: String</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$callback: JsAny</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$error: JsAny?</ID>
+    <ID>UnusedParameter:WasmFirebaseAuthProvider.kt$projectId: String</ID>
+    <ID>UnusedPrivateProperty:JsExternals.kt$RecaptchaVerifier$auth: Auth</ID>
+    <ID>UnusedPrivateProperty:JsExternals.kt$RecaptchaVerifier$container: String</ID>
+    <ID>UnusedPrivateProperty:JsExternals.kt$RecaptchaVerifier$parameters: dynamic = definedExternally</ID>
+    <ID>UnusedPrivateProperty:WasmFirebaseAuthExternals.kt$OAuthProvider$providerId: String</ID>
+    <ID>UnusedPrivateProperty:WasmFirebaseAuthExternals.kt$PhoneAuthProvider$auth: Auth</ID>
+    <ID>UnusedPrivateProperty:WasmFirebaseAuthExternals.kt$RecaptchaVerifier$auth: Auth</ID>
+    <ID>UnusedPrivateProperty:WasmFirebaseAuthExternals.kt$RecaptchaVerifier$container: String</ID>
+    <ID>UnusedPrivateProperty:WasmFirebaseAuthExternals.kt$RecaptchaVerifier$parameters: JsAny</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,0 +1,52 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Alias: ios => [iosArm64, iosSimulatorArm64]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.siere.auth:auth-firebase>
+final class dev.siere.auth.firebase/FirebaseWebOptions { // dev.siere.auth.firebase/FirebaseWebOptions|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin/String, kotlin/String, kotlin/Boolean = ...) // dev.siere.auth.firebase/FirebaseWebOptions.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.Boolean){}[0]
+
+    final val apiKey // dev.siere.auth.firebase/FirebaseWebOptions.apiKey|{}apiKey[0]
+        final fun <get-apiKey>(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.apiKey.<get-apiKey>|<get-apiKey>(){}[0]
+    final val appVerificationDisabledForTesting // dev.siere.auth.firebase/FirebaseWebOptions.appVerificationDisabledForTesting|{}appVerificationDisabledForTesting[0]
+        final fun <get-appVerificationDisabledForTesting>(): kotlin/Boolean // dev.siere.auth.firebase/FirebaseWebOptions.appVerificationDisabledForTesting.<get-appVerificationDisabledForTesting>|<get-appVerificationDisabledForTesting>(){}[0]
+    final val applicationId // dev.siere.auth.firebase/FirebaseWebOptions.applicationId|{}applicationId[0]
+        final fun <get-applicationId>(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.applicationId.<get-applicationId>|<get-applicationId>(){}[0]
+    final val authDomain // dev.siere.auth.firebase/FirebaseWebOptions.authDomain|{}authDomain[0]
+        final fun <get-authDomain>(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.authDomain.<get-authDomain>|<get-authDomain>(){}[0]
+    final val projectId // dev.siere.auth.firebase/FirebaseWebOptions.projectId|{}projectId[0]
+        final fun <get-projectId>(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.projectId.<get-projectId>|<get-projectId>(){}[0]
+
+    final fun component1(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.component2|component2(){}[0]
+    final fun component3(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.component3|component3(){}[0]
+    final fun component4(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.component4|component4(){}[0]
+    final fun component5(): kotlin/Boolean // dev.siere.auth.firebase/FirebaseWebOptions.component5|component5(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/Boolean = ...): dev.siere.auth.firebase/FirebaseWebOptions // dev.siere.auth.firebase/FirebaseWebOptions.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.String;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth.firebase/FirebaseWebOptions.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.siere.auth.firebase/FirebaseWebOptions.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.siere.auth.firebase/FirebaseWebOptions.toString|toString(){}[0]
+}
+
+// Targets: [ios]
+abstract fun interface dev.siere.auth.firebase/ApplePresentationAnchorProvider { // dev.siere.auth.firebase/ApplePresentationAnchorProvider|null[0]
+    abstract fun presentationAnchor(): platform.UIKit/UIWindow? // dev.siere.auth.firebase/ApplePresentationAnchorProvider.presentationAnchor|presentationAnchor(){}[0]
+}
+
+// Targets: [ios]
+abstract fun interface dev.siere.auth.firebase/GoogleSignInPresenter { // dev.siere.auth.firebase/GoogleSignInPresenter|null[0]
+    abstract fun present(kotlin/Function2<kotlin/String, kotlin/String, kotlin/Unit>, kotlin/Function1<kotlin/String, kotlin/Unit>) // dev.siere.auth.firebase/GoogleSignInPresenter.present|present(kotlin.Function2<kotlin.String,kotlin.String,kotlin.Unit>;kotlin.Function1<kotlin.String,kotlin.Unit>){}[0]
+}
+
+// Targets: [ios]
+final fun dev.siere.auth.firebase/FirebaseAuthProvider(dev.siere.auth.firebase/GoogleSignInPresenter? = ..., dev.siere.auth/DispatcherProvider = ..., dev.siere.auth.firebase/ApplePresentationAnchorProvider = ...): dev.siere.auth/AuthProvider // dev.siere.auth.firebase/FirebaseAuthProvider|FirebaseAuthProvider(dev.siere.auth.firebase.GoogleSignInPresenter?;dev.siere.auth.DispatcherProvider;dev.siere.auth.firebase.ApplePresentationAnchorProvider){}[0]
+
+// Targets: [js]
+final fun dev.siere.auth.firebase/FirebaseAuthProvider(dev.siere.auth.firebase/FirebaseWebOptions, dev.siere.auth/DispatcherProvider = ...): dev.siere.auth/AuthProvider // dev.siere.auth.firebase/FirebaseAuthProvider|FirebaseAuthProvider(dev.siere.auth.firebase.FirebaseWebOptions;dev.siere.auth.DispatcherProvider){}[0]
+
+// Targets: [wasmJs]
+final fun dev.siere.auth.firebase/FirebaseAuthProvider(dev.siere.auth.firebase/FirebaseWebOptions): dev.siere.auth/AuthProvider // dev.siere.auth.firebase/FirebaseAuthProvider|FirebaseAuthProvider(dev.siere.auth.firebase.FirebaseWebOptions){}[0]

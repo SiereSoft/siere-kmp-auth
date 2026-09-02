@@ -1,0 +1,7 @@
+public final class dev/siere/auth/supabase/SupabaseAuthProviderKt {
+	public static final fun SupabaseAuthProvider (Lio/github/jan/supabase/SupabaseClient;)Ldev/siere/auth/AuthProvider;
+	public static final fun SupabaseAuthProvider (Lio/github/jan/supabase/SupabaseClient;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static final fun SupabaseAuthProvider (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/AuthProvider;
+	public static final fun SupabaseAuthProvider (Ljava/lang/String;Ljava/lang/String;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+}
+

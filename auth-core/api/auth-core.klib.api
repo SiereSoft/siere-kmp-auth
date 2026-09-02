@@ -1,0 +1,502 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.siere.auth:auth-core>
+abstract interface dev.siere.auth/AuthProvider { // dev.siere.auth/AuthProvider|null[0]
+    abstract val authState // dev.siere.auth/AuthProvider.authState|{}authState[0]
+        abstract fun <get-authState>(): kotlinx.coroutines.flow/StateFlow<dev.siere.auth/AuthState> // dev.siere.auth/AuthProvider.authState.<get-authState>|<get-authState>(){}[0]
+
+    abstract suspend fun currentSession(kotlin/Boolean = ...): dev.siere.auth/AuthResult<dev.siere.auth/AuthSession> // dev.siere.auth/AuthProvider.currentSession|currentSession(kotlin.Boolean){}[0]
+    abstract suspend fun linkWithApple(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.linkWithApple|linkWithApple(){}[0]
+    abstract suspend fun linkWithGoogle(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.linkWithGoogle|linkWithGoogle(){}[0]
+    abstract suspend fun sendPasswordReset(kotlin/String): dev.siere.auth/AuthResult<kotlin/Unit> // dev.siere.auth/AuthProvider.sendPasswordReset|sendPasswordReset(kotlin.String){}[0]
+    abstract suspend fun signInAnonymously(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.signInAnonymously|signInAnonymously(){}[0]
+    abstract suspend fun signInWithApple(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.signInWithApple|signInWithApple(){}[0]
+    abstract suspend fun signInWithEmail(kotlin/String, kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.signInWithEmail|signInWithEmail(kotlin.String;kotlin.String){}[0]
+    abstract suspend fun signInWithGoogle(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.signInWithGoogle|signInWithGoogle(){}[0]
+    abstract suspend fun signOut(): dev.siere.auth/AuthResult<kotlin/Unit> // dev.siere.auth/AuthProvider.signOut|signOut(){}[0]
+    abstract suspend fun signUpWithEmail(kotlin/String, kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.signUpWithEmail|signUpWithEmail(kotlin.String;kotlin.String){}[0]
+    abstract suspend fun startPhoneLinking(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/AuthProvider.startPhoneLinking|startPhoneLinking(kotlin.String){}[0]
+    abstract suspend fun startPhoneSignIn(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/AuthProvider.startPhoneSignIn|startPhoneSignIn(kotlin.String){}[0]
+    open fun close() // dev.siere.auth/AuthProvider.close|close(){}[0]
+}
+
+abstract interface dev.siere.auth/DispatcherProvider { // dev.siere.auth/DispatcherProvider|null[0]
+    abstract val default // dev.siere.auth/DispatcherProvider.default|{}default[0]
+        abstract fun <get-default>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DispatcherProvider.default.<get-default>|<get-default>(){}[0]
+    abstract val io // dev.siere.auth/DispatcherProvider.io|{}io[0]
+        abstract fun <get-io>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DispatcherProvider.io.<get-io>|<get-io>(){}[0]
+    abstract val main // dev.siere.auth/DispatcherProvider.main|{}main[0]
+        abstract fun <get-main>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DispatcherProvider.main.<get-main>|<get-main>(){}[0]
+    abstract val unconfined // dev.siere.auth/DispatcherProvider.unconfined|{}unconfined[0]
+        abstract fun <get-unconfined>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DispatcherProvider.unconfined.<get-unconfined>|<get-unconfined>(){}[0]
+}
+
+abstract interface dev.siere.auth/PhoneVerificationSession { // dev.siere.auth/PhoneVerificationSession|null[0]
+    abstract val phoneNumber // dev.siere.auth/PhoneVerificationSession.phoneNumber|{}phoneNumber[0]
+        abstract fun <get-phoneNumber>(): kotlin/String // dev.siere.auth/PhoneVerificationSession.phoneNumber.<get-phoneNumber>|<get-phoneNumber>(){}[0]
+
+    abstract suspend fun confirm(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/PhoneVerificationSession.confirm|confirm(kotlin.String){}[0]
+}
+
+final class dev.siere.auth/AuthSession { // dev.siere.auth/AuthSession|null[0]
+    constructor <init>(dev.siere.auth/AuthUser, kotlin/String, kotlin/String? = ..., kotlin/Long? = ...) // dev.siere.auth/AuthSession.<init>|<init>(dev.siere.auth.AuthUser;kotlin.String;kotlin.String?;kotlin.Long?){}[0]
+
+    final val accessToken // dev.siere.auth/AuthSession.accessToken|{}accessToken[0]
+        final fun <get-accessToken>(): kotlin/String // dev.siere.auth/AuthSession.accessToken.<get-accessToken>|<get-accessToken>(){}[0]
+    final val expiresAtEpochMillis // dev.siere.auth/AuthSession.expiresAtEpochMillis|{}expiresAtEpochMillis[0]
+        final fun <get-expiresAtEpochMillis>(): kotlin/Long? // dev.siere.auth/AuthSession.expiresAtEpochMillis.<get-expiresAtEpochMillis>|<get-expiresAtEpochMillis>(){}[0]
+    final val refreshToken // dev.siere.auth/AuthSession.refreshToken|{}refreshToken[0]
+        final fun <get-refreshToken>(): kotlin/String? // dev.siere.auth/AuthSession.refreshToken.<get-refreshToken>|<get-refreshToken>(){}[0]
+    final val user // dev.siere.auth/AuthSession.user|{}user[0]
+        final fun <get-user>(): dev.siere.auth/AuthUser // dev.siere.auth/AuthSession.user.<get-user>|<get-user>(){}[0]
+
+    final fun component1(): dev.siere.auth/AuthUser // dev.siere.auth/AuthSession.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.siere.auth/AuthSession.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.siere.auth/AuthSession.component3|component3(){}[0]
+    final fun component4(): kotlin/Long? // dev.siere.auth/AuthSession.component4|component4(){}[0]
+    final fun copy(dev.siere.auth/AuthUser = ..., kotlin/String = ..., kotlin/String? = ..., kotlin/Long? = ...): dev.siere.auth/AuthSession // dev.siere.auth/AuthSession.copy|copy(dev.siere.auth.AuthUser;kotlin.String;kotlin.String?;kotlin.Long?){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthSession.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.siere.auth/AuthSession.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.siere.auth/AuthSession.toString|toString(){}[0]
+}
+
+final class dev.siere.auth/AuthUser { // dev.siere.auth/AuthUser|null[0]
+    constructor <init>(kotlin/String, kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean = ..., kotlin.collections/List<kotlin/String> = ...) // dev.siere.auth/AuthUser.<init>|<init>(kotlin.String;kotlin.String?;kotlin.String?;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.Boolean;kotlin.collections.List<kotlin.String>){}[0]
+
+    final val displayName // dev.siere.auth/AuthUser.displayName|{}displayName[0]
+        final fun <get-displayName>(): kotlin/String? // dev.siere.auth/AuthUser.displayName.<get-displayName>|<get-displayName>(){}[0]
+    final val email // dev.siere.auth/AuthUser.email|{}email[0]
+        final fun <get-email>(): kotlin/String? // dev.siere.auth/AuthUser.email.<get-email>|<get-email>(){}[0]
+    final val isAnonymous // dev.siere.auth/AuthUser.isAnonymous|{}isAnonymous[0]
+        final fun <get-isAnonymous>(): kotlin/Boolean // dev.siere.auth/AuthUser.isAnonymous.<get-isAnonymous>|<get-isAnonymous>(){}[0]
+    final val isEmailVerified // dev.siere.auth/AuthUser.isEmailVerified|{}isEmailVerified[0]
+        final fun <get-isEmailVerified>(): kotlin/Boolean // dev.siere.auth/AuthUser.isEmailVerified.<get-isEmailVerified>|<get-isEmailVerified>(){}[0]
+    final val phoneNumber // dev.siere.auth/AuthUser.phoneNumber|{}phoneNumber[0]
+        final fun <get-phoneNumber>(): kotlin/String? // dev.siere.auth/AuthUser.phoneNumber.<get-phoneNumber>|<get-phoneNumber>(){}[0]
+    final val photoUrl // dev.siere.auth/AuthUser.photoUrl|{}photoUrl[0]
+        final fun <get-photoUrl>(): kotlin/String? // dev.siere.auth/AuthUser.photoUrl.<get-photoUrl>|<get-photoUrl>(){}[0]
+    final val providerIds // dev.siere.auth/AuthUser.providerIds|{}providerIds[0]
+        final fun <get-providerIds>(): kotlin.collections/List<kotlin/String> // dev.siere.auth/AuthUser.providerIds.<get-providerIds>|<get-providerIds>(){}[0]
+    final val uid // dev.siere.auth/AuthUser.uid|{}uid[0]
+        final fun <get-uid>(): kotlin/String // dev.siere.auth/AuthUser.uid.<get-uid>|<get-uid>(){}[0]
+
+    final fun component1(): kotlin/String // dev.siere.auth/AuthUser.component1|component1(){}[0]
+    final fun component2(): kotlin/String? // dev.siere.auth/AuthUser.component2|component2(){}[0]
+    final fun component3(): kotlin/String? // dev.siere.auth/AuthUser.component3|component3(){}[0]
+    final fun component4(): kotlin/Boolean // dev.siere.auth/AuthUser.component4|component4(){}[0]
+    final fun component5(): kotlin/String? // dev.siere.auth/AuthUser.component5|component5(){}[0]
+    final fun component6(): kotlin/String? // dev.siere.auth/AuthUser.component6|component6(){}[0]
+    final fun component7(): kotlin/Boolean // dev.siere.auth/AuthUser.component7|component7(){}[0]
+    final fun component8(): kotlin.collections/List<kotlin/String> // dev.siere.auth/AuthUser.component8|component8(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean = ..., kotlin/String? = ..., kotlin/String? = ..., kotlin/Boolean = ..., kotlin.collections/List<kotlin/String> = ...): dev.siere.auth/AuthUser // dev.siere.auth/AuthUser.copy|copy(kotlin.String;kotlin.String?;kotlin.String?;kotlin.Boolean;kotlin.String?;kotlin.String?;kotlin.Boolean;kotlin.collections.List<kotlin.String>){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthUser.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.siere.auth/AuthUser.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.siere.auth/AuthUser.toString|toString(){}[0]
+}
+
+final class dev.siere.auth/DefaultDispatcherProvider : dev.siere.auth/DispatcherProvider { // dev.siere.auth/DefaultDispatcherProvider|null[0]
+    constructor <init>() // dev.siere.auth/DefaultDispatcherProvider.<init>|<init>(){}[0]
+
+    final val default // dev.siere.auth/DefaultDispatcherProvider.default|{}default[0]
+        final fun <get-default>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DefaultDispatcherProvider.default.<get-default>|<get-default>(){}[0]
+    final val io // dev.siere.auth/DefaultDispatcherProvider.io|{}io[0]
+        final fun <get-io>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DefaultDispatcherProvider.io.<get-io>|<get-io>(){}[0]
+    final val main // dev.siere.auth/DefaultDispatcherProvider.main|{}main[0]
+        final fun <get-main>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DefaultDispatcherProvider.main.<get-main>|<get-main>(){}[0]
+    final val unconfined // dev.siere.auth/DefaultDispatcherProvider.unconfined|{}unconfined[0]
+        final fun <get-unconfined>(): kotlinx.coroutines/CoroutineDispatcher // dev.siere.auth/DefaultDispatcherProvider.unconfined.<get-unconfined>|<get-unconfined>(){}[0]
+}
+
+final class dev.siere.auth/SiereAuth { // dev.siere.auth/SiereAuth|null[0]
+    constructor <init>(dev.siere.auth/AuthProvider) // dev.siere.auth/SiereAuth.<init>|<init>(dev.siere.auth.AuthProvider){}[0]
+
+    final val authState // dev.siere.auth/SiereAuth.authState|{}authState[0]
+        final fun <get-authState>(): kotlinx.coroutines.flow/StateFlow<dev.siere.auth/AuthState> // dev.siere.auth/SiereAuth.authState.<get-authState>|<get-authState>(){}[0]
+    final val currentUser // dev.siere.auth/SiereAuth.currentUser|{}currentUser[0]
+        final fun <get-currentUser>(): dev.siere.auth/AuthUser? // dev.siere.auth/SiereAuth.currentUser.<get-currentUser>|<get-currentUser>(){}[0]
+
+    final fun close() // dev.siere.auth/SiereAuth.close|close(){}[0]
+    final suspend fun currentSession(kotlin/Boolean = ...): dev.siere.auth/AuthResult<dev.siere.auth/AuthSession> // dev.siere.auth/SiereAuth.currentSession|currentSession(kotlin.Boolean){}[0]
+    final suspend fun linkWithApple(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.linkWithApple|linkWithApple(){}[0]
+    final suspend fun linkWithGoogle(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.linkWithGoogle|linkWithGoogle(){}[0]
+    final suspend fun sendPasswordReset(kotlin/String): dev.siere.auth/AuthResult<kotlin/Unit> // dev.siere.auth/SiereAuth.sendPasswordReset|sendPasswordReset(kotlin.String){}[0]
+    final suspend fun signInAnonymously(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInAnonymously|signInAnonymously(){}[0]
+    final suspend fun signInWithApple(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithApple|signInWithApple(){}[0]
+    final suspend fun signInWithEmail(kotlin/String, kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithEmail|signInWithEmail(kotlin.String;kotlin.String){}[0]
+    final suspend fun signInWithGoogle(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithGoogle|signInWithGoogle(){}[0]
+    final suspend fun signOut(): dev.siere.auth/AuthResult<kotlin/Unit> // dev.siere.auth/SiereAuth.signOut|signOut(){}[0]
+    final suspend fun signUpWithEmail(kotlin/String, kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signUpWithEmail|signUpWithEmail(kotlin.String;kotlin.String){}[0]
+    final suspend fun startPhoneLinking(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/SiereAuth.startPhoneLinking|startPhoneLinking(kotlin.String){}[0]
+    final suspend fun startPhoneSignIn(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/SiereAuth.startPhoneSignIn|startPhoneSignIn(kotlin.String){}[0]
+}
+
+sealed class <#A: out kotlin/Any?> dev.siere.auth/AuthResult { // dev.siere.auth/AuthResult|null[0]
+    final val isSuccess // dev.siere.auth/AuthResult.isSuccess|{}isSuccess[0]
+        final fun <get-isSuccess>(): kotlin/Boolean // dev.siere.auth/AuthResult.isSuccess.<get-isSuccess>|<get-isSuccess>(){}[0]
+
+    final fun errorOrNull(): dev.siere.auth/AuthError? // dev.siere.auth/AuthResult.errorOrNull|errorOrNull(){}[0]
+    final fun getOrNull(): #A? // dev.siere.auth/AuthResult.getOrNull|getOrNull(){}[0]
+
+    final class <#A1: kotlin/Any?> Success : dev.siere.auth/AuthResult<#A1> { // dev.siere.auth/AuthResult.Success|null[0]
+        constructor <init>(#A1) // dev.siere.auth/AuthResult.Success.<init>|<init>(1:0){}[0]
+
+        final val value // dev.siere.auth/AuthResult.Success.value|{}value[0]
+            final fun <get-value>(): #A1 // dev.siere.auth/AuthResult.Success.value.<get-value>|<get-value>(){}[0]
+
+        final fun component1(): #A1 // dev.siere.auth/AuthResult.Success.component1|component1(){}[0]
+        final fun copy(#A1 = ...): dev.siere.auth/AuthResult.Success<#A1> // dev.siere.auth/AuthResult.Success.copy|copy(1:0){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthResult.Success.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthResult.Success.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthResult.Success.toString|toString(){}[0]
+    }
+
+    final class Failure : dev.siere.auth/AuthResult<kotlin/Nothing> { // dev.siere.auth/AuthResult.Failure|null[0]
+        constructor <init>(dev.siere.auth/AuthError) // dev.siere.auth/AuthResult.Failure.<init>|<init>(dev.siere.auth.AuthError){}[0]
+
+        final val error // dev.siere.auth/AuthResult.Failure.error|{}error[0]
+            final fun <get-error>(): dev.siere.auth/AuthError // dev.siere.auth/AuthResult.Failure.error.<get-error>|<get-error>(){}[0]
+
+        final fun component1(): dev.siere.auth/AuthError // dev.siere.auth/AuthResult.Failure.component1|component1(){}[0]
+        final fun copy(dev.siere.auth/AuthError = ...): dev.siere.auth/AuthResult.Failure // dev.siere.auth/AuthResult.Failure.copy|copy(dev.siere.auth.AuthError){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthResult.Failure.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthResult.Failure.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthResult.Failure.toString|toString(){}[0]
+    }
+}
+
+sealed class dev.siere.auth/AuthError { // dev.siere.auth/AuthError|null[0]
+    abstract val message // dev.siere.auth/AuthError.message|{}message[0]
+        abstract fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.message.<get-message>|<get-message>(){}[0]
+    abstract val providerCode // dev.siere.auth/AuthError.providerCode|{}providerCode[0]
+        abstract fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+    final class AuthStateChanged : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.AuthStateChanged|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.AuthStateChanged.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.AuthStateChanged.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.AuthStateChanged.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.AuthStateChanged.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.AuthStateChanged.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.AuthStateChanged.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.AuthStateChanged.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.AuthStateChanged // dev.siere.auth/AuthError.AuthStateChanged.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.AuthStateChanged.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.AuthStateChanged.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.AuthStateChanged.toString|toString(){}[0]
+    }
+
+    final class BillingRequired : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.BillingRequired|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.BillingRequired.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.BillingRequired.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.BillingRequired.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.BillingRequired.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.BillingRequired.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.BillingRequired.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.BillingRequired.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.BillingRequired // dev.siere.auth/AuthError.BillingRequired.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.BillingRequired.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.BillingRequired.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.BillingRequired.toString|toString(){}[0]
+    }
+
+    final class Cancelled : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.Cancelled|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.Cancelled.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.Cancelled.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.Cancelled.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.Cancelled.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.Cancelled.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.Cancelled.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.Cancelled.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.Cancelled // dev.siere.auth/AuthError.Cancelled.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.Cancelled.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.Cancelled.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.Cancelled.toString|toString(){}[0]
+    }
+
+    final class CredentialAlreadyInUse : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.CredentialAlreadyInUse|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.CredentialAlreadyInUse.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.CredentialAlreadyInUse.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.CredentialAlreadyInUse.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.CredentialAlreadyInUse.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.CredentialAlreadyInUse.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.CredentialAlreadyInUse.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.CredentialAlreadyInUse.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.CredentialAlreadyInUse // dev.siere.auth/AuthError.CredentialAlreadyInUse.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.CredentialAlreadyInUse.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.CredentialAlreadyInUse.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.CredentialAlreadyInUse.toString|toString(){}[0]
+    }
+
+    final class EmailAlreadyInUse : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.EmailAlreadyInUse|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.EmailAlreadyInUse.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.EmailAlreadyInUse.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.EmailAlreadyInUse.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.EmailAlreadyInUse.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.EmailAlreadyInUse.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.EmailAlreadyInUse.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.EmailAlreadyInUse.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.EmailAlreadyInUse // dev.siere.auth/AuthError.EmailAlreadyInUse.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.EmailAlreadyInUse.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.EmailAlreadyInUse.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.EmailAlreadyInUse.toString|toString(){}[0]
+    }
+
+    final class InvalidCredentials : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.InvalidCredentials|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.InvalidCredentials.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.InvalidCredentials.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.InvalidCredentials.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.InvalidCredentials.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.InvalidCredentials.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.InvalidCredentials.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.InvalidCredentials.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.InvalidCredentials // dev.siere.auth/AuthError.InvalidCredentials.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.InvalidCredentials.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.InvalidCredentials.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.InvalidCredentials.toString|toString(){}[0]
+    }
+
+    final class InvalidPhoneNumber : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.InvalidPhoneNumber|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.InvalidPhoneNumber.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.InvalidPhoneNumber.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.InvalidPhoneNumber.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.InvalidPhoneNumber.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.InvalidPhoneNumber.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.InvalidPhoneNumber.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.InvalidPhoneNumber.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.InvalidPhoneNumber // dev.siere.auth/AuthError.InvalidPhoneNumber.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.InvalidPhoneNumber.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.InvalidPhoneNumber.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.InvalidPhoneNumber.toString|toString(){}[0]
+    }
+
+    final class InvalidVerificationCode : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.InvalidVerificationCode|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.InvalidVerificationCode.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.InvalidVerificationCode.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.InvalidVerificationCode.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.InvalidVerificationCode.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.InvalidVerificationCode.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.InvalidVerificationCode.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.InvalidVerificationCode.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.InvalidVerificationCode // dev.siere.auth/AuthError.InvalidVerificationCode.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.InvalidVerificationCode.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.InvalidVerificationCode.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.InvalidVerificationCode.toString|toString(){}[0]
+    }
+
+    final class Network : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.Network|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.Network.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.Network.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.Network.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.Network.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.Network.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.Network.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.Network.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.Network // dev.siere.auth/AuthError.Network.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.Network.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.Network.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.Network.toString|toString(){}[0]
+    }
+
+    final class NotSignedIn : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.NotSignedIn|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.NotSignedIn.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.NotSignedIn.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.NotSignedIn.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.NotSignedIn.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.NotSignedIn.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.NotSignedIn.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.NotSignedIn.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.NotSignedIn // dev.siere.auth/AuthError.NotSignedIn.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.NotSignedIn.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.NotSignedIn.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.NotSignedIn.toString|toString(){}[0]
+    }
+
+    final class PopupBlocked : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.PopupBlocked|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.PopupBlocked.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.PopupBlocked.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.PopupBlocked.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.PopupBlocked.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.PopupBlocked.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.PopupBlocked.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.PopupBlocked.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.PopupBlocked // dev.siere.auth/AuthError.PopupBlocked.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.PopupBlocked.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.PopupBlocked.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.PopupBlocked.toString|toString(){}[0]
+    }
+
+    final class ProviderDisabled : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.ProviderDisabled|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.ProviderDisabled.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.ProviderDisabled.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.ProviderDisabled.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.ProviderDisabled.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.ProviderDisabled.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.ProviderDisabled.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.ProviderDisabled.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.ProviderDisabled // dev.siere.auth/AuthError.ProviderDisabled.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.ProviderDisabled.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.ProviderDisabled.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.ProviderDisabled.toString|toString(){}[0]
+    }
+
+    final class RegionBlocked : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.RegionBlocked|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.RegionBlocked.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.RegionBlocked.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.RegionBlocked.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.RegionBlocked.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.RegionBlocked.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.RegionBlocked.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.RegionBlocked.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.RegionBlocked // dev.siere.auth/AuthError.RegionBlocked.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.RegionBlocked.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.RegionBlocked.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.RegionBlocked.toString|toString(){}[0]
+    }
+
+    final class RequiresRecentLogin : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.RequiresRecentLogin|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.RequiresRecentLogin.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.RequiresRecentLogin.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.RequiresRecentLogin.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.RequiresRecentLogin.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.RequiresRecentLogin.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.RequiresRecentLogin.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.RequiresRecentLogin.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.RequiresRecentLogin // dev.siere.auth/AuthError.RequiresRecentLogin.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.RequiresRecentLogin.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.RequiresRecentLogin.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.RequiresRecentLogin.toString|toString(){}[0]
+    }
+
+    final class Unknown : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.Unknown|null[0]
+        constructor <init>(kotlin/String, kotlin/String? = ...) // dev.siere.auth/AuthError.Unknown.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.Unknown.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.Unknown.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.Unknown.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.Unknown.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.Unknown.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.Unknown.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.Unknown // dev.siere.auth/AuthError.Unknown.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.Unknown.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.Unknown.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.Unknown.toString|toString(){}[0]
+    }
+
+    final class Unsupported : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.Unsupported|null[0]
+        constructor <init>(kotlin/String, kotlin/String, kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.Unsupported.<init>|<init>(kotlin.String;kotlin.String;kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.Unsupported.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.Unsupported.message.<get-message>|<get-message>(){}[0]
+        final val operation // dev.siere.auth/AuthError.Unsupported.operation|{}operation[0]
+            final fun <get-operation>(): kotlin/String // dev.siere.auth/AuthError.Unsupported.operation.<get-operation>|<get-operation>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.Unsupported.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.Unsupported.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+        final val target // dev.siere.auth/AuthError.Unsupported.target|{}target[0]
+            final fun <get-target>(): kotlin/String // dev.siere.auth/AuthError.Unsupported.target.<get-target>|<get-target>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.Unsupported.component1|component1(){}[0]
+        final fun component2(): kotlin/String // dev.siere.auth/AuthError.Unsupported.component2|component2(){}[0]
+        final fun component3(): kotlin/String // dev.siere.auth/AuthError.Unsupported.component3|component3(){}[0]
+        final fun component4(): kotlin/String? // dev.siere.auth/AuthError.Unsupported.component4|component4(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.Unsupported // dev.siere.auth/AuthError.Unsupported.copy|copy(kotlin.String;kotlin.String;kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.Unsupported.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.Unsupported.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.Unsupported.toString|toString(){}[0]
+    }
+
+    final class UserNotFound : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.UserNotFound|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.UserNotFound.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.UserNotFound.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.UserNotFound.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.UserNotFound.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.UserNotFound.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.UserNotFound.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.UserNotFound.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.UserNotFound // dev.siere.auth/AuthError.UserNotFound.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.UserNotFound.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.UserNotFound.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.UserNotFound.toString|toString(){}[0]
+    }
+
+    final class WeakPassword : dev.siere.auth/AuthError { // dev.siere.auth/AuthError.WeakPassword|null[0]
+        constructor <init>(kotlin/String = ..., kotlin/String? = ...) // dev.siere.auth/AuthError.WeakPassword.<init>|<init>(kotlin.String;kotlin.String?){}[0]
+
+        final val message // dev.siere.auth/AuthError.WeakPassword.message|{}message[0]
+            final fun <get-message>(): kotlin/String // dev.siere.auth/AuthError.WeakPassword.message.<get-message>|<get-message>(){}[0]
+        final val providerCode // dev.siere.auth/AuthError.WeakPassword.providerCode|{}providerCode[0]
+            final fun <get-providerCode>(): kotlin/String? // dev.siere.auth/AuthError.WeakPassword.providerCode.<get-providerCode>|<get-providerCode>(){}[0]
+
+        final fun component1(): kotlin/String // dev.siere.auth/AuthError.WeakPassword.component1|component1(){}[0]
+        final fun component2(): kotlin/String? // dev.siere.auth/AuthError.WeakPassword.component2|component2(){}[0]
+        final fun copy(kotlin/String = ..., kotlin/String? = ...): dev.siere.auth/AuthError.WeakPassword // dev.siere.auth/AuthError.WeakPassword.copy|copy(kotlin.String;kotlin.String?){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthError.WeakPassword.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthError.WeakPassword.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthError.WeakPassword.toString|toString(){}[0]
+    }
+}
+
+sealed class dev.siere.auth/AuthState { // dev.siere.auth/AuthState|null[0]
+    final class SignedIn : dev.siere.auth/AuthState { // dev.siere.auth/AuthState.SignedIn|null[0]
+        constructor <init>(dev.siere.auth/AuthUser) // dev.siere.auth/AuthState.SignedIn.<init>|<init>(dev.siere.auth.AuthUser){}[0]
+
+        final val user // dev.siere.auth/AuthState.SignedIn.user|{}user[0]
+            final fun <get-user>(): dev.siere.auth/AuthUser // dev.siere.auth/AuthState.SignedIn.user.<get-user>|<get-user>(){}[0]
+
+        final fun component1(): dev.siere.auth/AuthUser // dev.siere.auth/AuthState.SignedIn.component1|component1(){}[0]
+        final fun copy(dev.siere.auth/AuthUser = ...): dev.siere.auth/AuthState.SignedIn // dev.siere.auth/AuthState.SignedIn.copy|copy(dev.siere.auth.AuthUser){}[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthState.SignedIn.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthState.SignedIn.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthState.SignedIn.toString|toString(){}[0]
+    }
+
+    final object Loading : dev.siere.auth/AuthState { // dev.siere.auth/AuthState.Loading|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthState.Loading.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthState.Loading.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthState.Loading.toString|toString(){}[0]
+    }
+
+    final object SignedOut : dev.siere.auth/AuthState { // dev.siere.auth/AuthState.SignedOut|null[0]
+        final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth/AuthState.SignedOut.equals|equals(kotlin.Any?){}[0]
+        final fun hashCode(): kotlin/Int // dev.siere.auth/AuthState.SignedOut.hashCode|hashCode(){}[0]
+        final fun toString(): kotlin/String // dev.siere.auth/AuthState.SignedOut.toString|toString(){}[0]
+    }
+}
+
+final inline fun <#A: kotlin/Any?, #B: kotlin/Any?> (dev.siere.auth/AuthResult<#A>).dev.siere.auth/map(kotlin/Function1<#A, #B>): dev.siere.auth/AuthResult<#B> // dev.siere.auth/map|map@dev.siere.auth.AuthResult<0:0>(kotlin.Function1<0:0,0:1>){0§<kotlin.Any?>;1§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (dev.siere.auth/AuthResult<#A>).dev.siere.auth/onFailure(kotlin/Function1<dev.siere.auth/AuthError, kotlin/Unit>): dev.siere.auth/AuthResult<#A> // dev.siere.auth/onFailure|onFailure@dev.siere.auth.AuthResult<0:0>(kotlin.Function1<dev.siere.auth.AuthError,kotlin.Unit>){0§<kotlin.Any?>}[0]
+final inline fun <#A: kotlin/Any?> (dev.siere.auth/AuthResult<#A>).dev.siere.auth/onSuccess(kotlin/Function1<#A, kotlin/Unit>): dev.siere.auth/AuthResult<#A> // dev.siere.auth/onSuccess|onSuccess@dev.siere.auth.AuthResult<0:0>(kotlin.Function1<0:0,kotlin.Unit>){0§<kotlin.Any?>}[0]

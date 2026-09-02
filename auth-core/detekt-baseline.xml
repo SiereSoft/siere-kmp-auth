@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>MatchingDeclarationName:DefaultDispatcherProvider.wasmJs.kt$DefaultDispatcherProvider : DispatcherProvider</ID>
+    <ID>MaxLineLength:FakeAuthProvider.kt$FakeAuthProvider$override suspend fun signInAnonymously(): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>MaxLineLength:SiereAuth.kt$SiereAuth$public suspend fun currentSession(forceRefresh: Boolean = false): AuthResult&lt;AuthSession&gt;</ID>
+    <ID>MaxLineLength:SiereAuth.kt$SiereAuth$public suspend fun startPhoneSignIn(phoneNumber: String): AuthResult&lt;PhoneVerificationSession&gt;</ID>
+    <ID>TooManyFunctions:AuthProvider.kt$AuthProvider</ID>
+    <ID>TooManyFunctions:SiereAuth.kt$SiereAuth</ID>
+  </CurrentIssues>
+</SmellBaseline>

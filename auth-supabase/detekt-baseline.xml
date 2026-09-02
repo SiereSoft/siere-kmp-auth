@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:SupabaseAuthProvider.kt$public fun SupabaseAuthProvider( client: SupabaseClient, dispatcherProvider: DispatcherProvider, ): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:SupabaseAuthProvider.kt$public fun SupabaseAuthProvider( supabaseUrl: String, supabaseKey: String, ): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:SupabaseAuthProvider.kt$public fun SupabaseAuthProvider( supabaseUrl: String, supabaseKey: String, dispatcherProvider: DispatcherProvider, ): dev.siere.auth.AuthProvider</ID>
+    <ID>FunctionNaming:SupabaseAuthProvider.kt$public fun SupabaseAuthProvider(client: SupabaseClient): dev.siere.auth.AuthProvider</ID>
+    <ID>MaxLineLength:SupabaseAuthProvider.kt$)</ID>
+    <ID>MaxLineLength:SupabaseAuthProvider.kt$SupabaseAuthProviderImpl$message = "Supabase phone linking is disabled until upstream phone-change verification is account-unique"</ID>
+    <ID>ReturnCount:SupabaseAuthProvider.kt$SupabaseAuthProviderImpl$override suspend fun currentSession(forceRefresh: Boolean): AuthResult&lt;AuthSession&gt;</ID>
+    <ID>ReturnCount:SupabaseErrorMapping.kt$internal fun supabaseAuthError(failure: Throwable): AuthError</ID>
+    <ID>TooGenericExceptionCaught:SupabaseAuthProvider.kt$SupabaseAuthProviderImpl$failure: Throwable</ID>
+    <ID>TooGenericExceptionCaught:SupabaseAuthProvider.kt$failure: Throwable</ID>
+    <ID>TooManyFunctions:SupabaseAuthProvider.kt$SupabaseAuthProviderImpl : AuthProvider</ID>
+    <ID>TooManyFunctions:SupabaseAuthProvider.kt$dev.siere.auth.supabase.SupabaseAuthProvider.kt</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,0 +1,31 @@
+public abstract interface class dev/siere/auth/firebase/AndroidActivityProvider {
+	public abstract fun currentActivity ()Landroid/app/Activity;
+}
+
+public final class dev/siere/auth/firebase/AndroidFirebaseAuthProviderKt {
+	public static final fun FirebaseAuthProvider ()Ldev/siere/auth/AuthProvider;
+	public static final fun FirebaseAuthProvider (Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static final fun FirebaseAuthProvider (Ldev/siere/auth/firebase/AndroidActivityProvider;Ljava/lang/String;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static synthetic fun FirebaseAuthProvider$default (Ldev/siere/auth/firebase/AndroidActivityProvider;Ljava/lang/String;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
+}
+
+public final class dev/siere/auth/firebase/FirebaseWebOptions {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ldev/siere/auth/firebase/FirebaseWebOptions;
+	public static synthetic fun copy$default (Ldev/siere/auth/firebase/FirebaseWebOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Ldev/siere/auth/firebase/FirebaseWebOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiKey ()Ljava/lang/String;
+	public final fun getAppVerificationDisabledForTesting ()Z
+	public final fun getApplicationId ()Ljava/lang/String;
+	public final fun getAuthDomain ()Ljava/lang/String;
+	public final fun getProjectId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+

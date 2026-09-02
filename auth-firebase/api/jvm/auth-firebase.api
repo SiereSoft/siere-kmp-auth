@@ -1,0 +1,84 @@
+public final class dev/siere/auth/firebase/FirebaseWebOptions {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/lang/String;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Z)Ldev/siere/auth/firebase/FirebaseWebOptions;
+	public static synthetic fun copy$default (Ldev/siere/auth/firebase/FirebaseWebOptions;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;ZILjava/lang/Object;)Ldev/siere/auth/firebase/FirebaseWebOptions;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getApiKey ()Ljava/lang/String;
+	public final fun getAppVerificationDisabledForTesting ()Z
+	public final fun getApplicationId ()Ljava/lang/String;
+	public final fun getAuthDomain ()Ljava/lang/String;
+	public final fun getProjectId ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/firebase/JvmAppleCredential {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/firebase/JvmAuthOperation : java/lang/Enum {
+	public static final field LINK Ldev/siere/auth/firebase/JvmAuthOperation;
+	public static final field SIGN_IN Ldev/siere/auth/firebase/JvmAuthOperation;
+	public static fun getEntries ()Lkotlin/enums/EnumEntries;
+	public static fun valueOf (Ljava/lang/String;)Ldev/siere/auth/firebase/JvmAuthOperation;
+	public static fun values ()[Ldev/siere/auth/firebase/JvmAuthOperation;
+}
+
+public abstract interface class dev/siere/auth/firebase/JvmBrowserLauncher {
+	public abstract fun open (Ljava/net/URI;)Z
+}
+
+public abstract interface class dev/siere/auth/firebase/JvmFirebaseAuthBroker : java/lang/AutoCloseable {
+	public abstract fun authorizeApple (Ldev/siere/auth/firebase/JvmAuthOperation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun close ()V
+	public abstract fun completePhoneVerification (Ldev/siere/auth/firebase/JvmPhoneChallenge;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun startPhoneVerification (Ljava/lang/String;Ldev/siere/auth/firebase/JvmAuthOperation;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class dev/siere/auth/firebase/JvmFirebaseAuthBroker$DefaultImpls {
+	public static fun close (Ldev/siere/auth/firebase/JvmFirebaseAuthBroker;)V
+}
+
+public final class dev/siere/auth/firebase/JvmFirebaseAuthProviderKt {
+	public static final fun FirebaseAuthProvider ()Ldev/siere/auth/AuthProvider;
+	public static final fun FirebaseAuthProvider (Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static final fun FirebaseAuthProvider (Ldev/siere/auth/firebase/JvmFirebaseAuthBroker;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static final fun FirebaseAuthProvider (Ldev/siere/auth/firebase/JvmGoogleAuthConfig;Ldev/siere/auth/firebase/JvmBrowserLauncher;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static final fun FirebaseAuthProvider (Ldev/siere/auth/firebase/JvmGoogleAuthConfig;Ldev/siere/auth/firebase/JvmFirebaseAuthBroker;Ldev/siere/auth/firebase/JvmBrowserLauncher;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static synthetic fun FirebaseAuthProvider$default (Ldev/siere/auth/firebase/JvmFirebaseAuthBroker;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
+	public static synthetic fun FirebaseAuthProvider$default (Ldev/siere/auth/firebase/JvmGoogleAuthConfig;Ldev/siere/auth/firebase/JvmBrowserLauncher;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
+	public static synthetic fun FirebaseAuthProvider$default (Ldev/siere/auth/firebase/JvmGoogleAuthConfig;Ldev/siere/auth/firebase/JvmFirebaseAuthBroker;Ldev/siere/auth/firebase/JvmBrowserLauncher;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
+}
+
+public final class dev/siere/auth/firebase/JvmGoogleAuthConfig {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;J)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/List;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun getCallbackTimeoutMillis ()J
+	public final fun getClientId ()Ljava/lang/String;
+	public final fun getScopes ()Ljava/util/List;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/firebase/JvmPhoneChallenge {
+	public fun <init> (Ljava/lang/String;)V
+	public final fun getHandle ()Ljava/lang/String;
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/firebase/JvmPhoneCredential {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/firebase/SystemJvmBrowserLauncher : dev/siere/auth/firebase/JvmBrowserLauncher {
+	public static final field INSTANCE Ldev/siere/auth/firebase/SystemJvmBrowserLauncher;
+	public fun open (Ljava/net/URI;)Z
+}
+

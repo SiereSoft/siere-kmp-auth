@@ -1,0 +1,85 @@
+name: Verify
+
+on:
+  push:
+    branches: [master]
+    tags: ["v*"]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  deterministic:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: android-actions/setup-android@40fd30fb8d7440372e1316f5d1809ec01dcd3699 # v4.0.1
+      - uses: browser-actions/setup-chrome@48ad923757ca74d66703209fe939badbdf80f2f4 # v2.2.0
+      - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+      - name: Static analysis and formatting
+        run: ./gradlew staticAnalysis
+      - name: API, JVM, browser, and Android checks
+        run: |
+          ./gradlew \
+            :auth-core:jvmTest :auth-core:jsBrowserTest :auth-core:wasmJsBrowserTest :auth-core:apiCheck \
+            :auth-core:testDebugUnitTest \
+            :auth-firebase:jvmTest :auth-firebase:jsBrowserTest :auth-firebase:wasmJsBrowserTest :auth-firebase:testDebugUnitTest :auth-firebase:apiCheck \
+            :auth-supabase:jvmTest :auth-supabase:jsBrowserTest :auth-supabase:wasmJsBrowserTest :auth-supabase:testDebugUnitTest :auth-supabase:apiCheck \
+            :sample:jvmTest :sample:jsBrowserTest :sample:wasmJsBrowserTest :sample:testDebugUnitTest \
+            :sample:assembleDebug :sample:createDistributable :sample:jsBrowserDistribution :sample:wasmJsBrowserDistribution
+      - name: Diff and credential hygiene
+        run: |
+          git diff --check
+          python3 scripts/verify_no_secrets.py
+
+  ios:
+    runs-on: macos-15
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-java@dd06d9cba3e5552c54d9f8ea23572deb30010f7c # v6.0.0
+        with:
+          distribution: temurin
+          java-version: "17"
+      - uses: gradle/actions/setup-gradle@9c971963bec38e04b3d30dcc455b5382be2fdbfb # v6.3.0
+      - name: Select Xcode 26.2
+        run: |
+          sudo xcode-select --switch /Applications/Xcode_26.2.app/Contents/Developer
+          xcodebuild -version
+      - name: Native tests and API checks
+        run: |
+          ./gradlew \
+            :auth-core:iosSimulatorArm64Test \
+            :auth-firebase:iosSimulatorArm64Test \
+            :auth-supabase:iosSimulatorArm64Test \
+            :sample:iosSimulatorArm64Test \
+            :auth-core:apiCheck :auth-firebase:apiCheck :auth-supabase:apiCheck
+      - name: Resolve Swift packages
+        run: |
+          xcodebuild \
+            -resolvePackageDependencies \
+            -onlyUsePackageVersionsFromResolvedFile \
+            -project sample/iosApp/iosApp.xcodeproj \
+            -scheme iOSApp
+      - name: Build credential-free iOS shell
+        run: |
+          xcodebuild \
+            -project sample/iosApp/iosApp.xcodeproj \
+            -scheme iOSApp \
+            -onlyUsePackageVersionsFromResolvedFile \
+            -disableAutomaticPackageResolution \
+            -configuration Debug \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "$RUNNER_TEMP/siere-kmp-auth-derived" \
+            CODE_SIGNING_ALLOWED=NO \
+            ARCHS=arm64 \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            CLANG_ENABLE_EXPLICIT_MODULES=NO \
+            SWIFT_ENABLE_EXPLICIT_MODULES=NO \
+            build

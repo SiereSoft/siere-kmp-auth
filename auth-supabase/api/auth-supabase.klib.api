@@ -1,0 +1,12 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.siere.auth:auth-supabase>
+final fun dev.siere.auth.supabase/SupabaseAuthProvider(io.github.jan.supabase/SupabaseClient): dev.siere.auth/AuthProvider // dev.siere.auth.supabase/SupabaseAuthProvider|SupabaseAuthProvider(io.github.jan.supabase.SupabaseClient){}[0]
+final fun dev.siere.auth.supabase/SupabaseAuthProvider(io.github.jan.supabase/SupabaseClient, dev.siere.auth/DispatcherProvider): dev.siere.auth/AuthProvider // dev.siere.auth.supabase/SupabaseAuthProvider|SupabaseAuthProvider(io.github.jan.supabase.SupabaseClient;dev.siere.auth.DispatcherProvider){}[0]
+final fun dev.siere.auth.supabase/SupabaseAuthProvider(kotlin/String, kotlin/String): dev.siere.auth/AuthProvider // dev.siere.auth.supabase/SupabaseAuthProvider|SupabaseAuthProvider(kotlin.String;kotlin.String){}[0]
+final fun dev.siere.auth.supabase/SupabaseAuthProvider(kotlin/String, kotlin/String, dev.siere.auth/DispatcherProvider): dev.siere.auth/AuthProvider // dev.siere.auth.supabase/SupabaseAuthProvider|SupabaseAuthProvider(kotlin.String;kotlin.String;dev.siere.auth.DispatcherProvider){}[0]

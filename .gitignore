@@ -1,0 +1,13 @@
+*.iml
+.gradle
+.idea
+.kotlin
+.swiftpm-locks/
+.DS_Store
+build
+*/build
+local.properties
+google-services.json
+GoogleService-Info.plist
+xcuserdata/
+kotlin-js-store/

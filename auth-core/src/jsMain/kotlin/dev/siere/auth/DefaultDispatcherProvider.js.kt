@@ -1,0 +1,12 @@
+package dev.siere.auth
+
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+
+public actual class DefaultDispatcherProvider actual constructor() : DispatcherProvider {
+    // JavaScript has one event-loop scheduler; exposing the full contract keeps consumers portable.
+    public actual override val main: CoroutineDispatcher = Dispatchers.Default
+    public actual override val default: CoroutineDispatcher = Dispatchers.Default
+    public actual override val io: CoroutineDispatcher = Dispatchers.Default
+    public actual override val unconfined: CoroutineDispatcher = Dispatchers.Unconfined
+}

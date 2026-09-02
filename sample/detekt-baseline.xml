@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>CyclomaticComplexMethod:SampleApp.kt$@Composable fun SampleApp(options: List&lt;ProviderOption&gt;)</ID>
+    <ID>CyclomaticComplexMethod:SampleApp.kt$private fun AuthError.userFacingMessage(): String</ID>
+    <ID>FunctionNaming:MainViewController.kt$fun MainViewController( firebaseConfigured: Boolean = false, googleSignIn: GoogleSignInPresenter? = null, configuredSupabaseClient: SupabaseClient? = null, )</ID>
+    <ID>FunctionNaming:SampleApp.kt$@Composable fun SampleApp(options: List&lt;ProviderOption&gt;)</ID>
+    <ID>LongMethod:SampleApp.kt$@Composable fun SampleApp(options: List&lt;ProviderOption&gt;)</ID>
+    <ID>MagicNumber:ClientConfiguration.kt$0xff</ID>
+    <ID>MagicNumber:ClientConfiguration.kt$3</ID>
+    <ID>MagicNumber:ClientConfiguration.kt$6</ID>
+    <ID>MagicNumber:ClientConfiguration.kt$8</ID>
+    <ID>MagicNumber:DemoAuthProvider.kt$DemoAuthProvider$8</ID>
+    <ID>MaxLineLength:DemoAuthProvider.kt$DemoAuthProvider$override suspend fun signInWithApple(): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>MaxLineLength:DemoAuthProvider.kt$DemoAuthProvider$override suspend fun signInWithGoogle(): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>MaxLineLength:SampleApp.kt$?:</ID>
+    <ID>ReturnCount:ClientConfiguration.kt$private fun hasPrivilegedSupabaseJwtRole(key: String): Boolean</ID>
+    <ID>ReturnCount:DemoAuthProvider.kt$DemoAuthProvider$override suspend fun signInWithEmail( email: String, password: String, ): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>ReturnCount:DemoAuthProvider.kt$DemoAuthProvider.DemoPhoneSession$override suspend fun confirm(code: String): AuthResult&lt;AuthUser&gt;</ID>
+    <ID>ReturnCount:main.kt$private fun firebaseOptionsFromLocalStorage(): FirebaseWebOptions?</ID>
+    <ID>ReturnCount:main.kt$private fun supabaseFromLocalStorage(): Pair&lt;String, String&gt;?</ID>
+    <ID>TooManyFunctions:DemoAuthProvider.kt$DemoAuthProvider : AuthProvider</ID>
+  </CurrentIssues>
+</SmellBaseline>
