@@ -56,6 +56,7 @@ kotlin {
             implementation(libs.googleid)
         }
         jvmMain.get().dependsOn(gitliveMain)
+        jvmMain.get().kotlin.srcDir(rootProject.file("auth-jvm-shared/src/main/kotlin"))
         jsMain.get().dependsOn(gitliveMain)
         iosMain.get().dependsOn(gitliveMain)
 

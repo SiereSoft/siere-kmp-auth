@@ -36,6 +36,7 @@ subprojects {
 
 apiValidation {
     ignoredProjects.add("sample")
+    ignoredProjects.add("sample-jvm-oidc")
 
     @OptIn(kotlinx.validation.ExperimentalBCVApi::class)
     klib {

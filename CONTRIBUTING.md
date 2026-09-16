@@ -19,10 +19,12 @@ Use the included Gradle wrapper and JDK 17. Run the deterministic checks before 
 ./gradlew :auth-core:allTests :auth-core:apiCheck \
   :auth-firebase:allTests :auth-firebase:apiCheck \
   :auth-supabase:allTests :auth-supabase:apiCheck \
-  :sample:allTests
+  :auth-oidc:allTests :auth-oidc:apiCheck \
+  :sample:allTests :sample-jvm-oidc:jvmTest
 ./gradlew staticAnalysis
 ./gradlew :sample:assembleDebug \
   :sample:createDistributable :sample:jsBrowserDistribution :sample:wasmJsBrowserDistribution
+./gradlew :sample-jvm-oidc:createDistributable
 python3 scripts/verify_no_secrets.py
 git diff --check
 ```

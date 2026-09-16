@@ -9,6 +9,17 @@ import kotlin.test.assertTrue
 
 class SiereAuthTest {
     @Test
+    fun openIdSignInDelegatesToTheProvider() =
+        runTest {
+            val auth = SiereAuth(FakeAuthProvider())
+
+            val result = auth.signInWithOpenId()
+
+            assertEquals("fake-uid", result.getOrNull()?.uid)
+            assertIs<AuthState.SignedIn>(auth.authState.value)
+        }
+
+    @Test
     fun signInMovesStateToSignedIn() =
         runTest {
             val auth = SiereAuth(FakeAuthProvider())

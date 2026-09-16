@@ -31,7 +31,9 @@ jobs:
             :auth-core:testDebugUnitTest \
             :auth-firebase:jvmTest :auth-firebase:jsBrowserTest :auth-firebase:wasmJsBrowserTest :auth-firebase:testDebugUnitTest :auth-firebase:apiCheck \
             :auth-supabase:jvmTest :auth-supabase:jsBrowserTest :auth-supabase:wasmJsBrowserTest :auth-supabase:testDebugUnitTest :auth-supabase:apiCheck \
+            :auth-oidc:jvmTest :auth-oidc:apiCheck \
             :sample:jvmTest :sample:jsBrowserTest :sample:wasmJsBrowserTest :sample:testDebugUnitTest \
+            :sample-jvm-oidc:jvmTest :sample-jvm-oidc:createDistributable \
             :sample:assembleDebug :sample:createDistributable :sample:jsBrowserDistribution :sample:wasmJsBrowserDistribution
       - name: Diff and credential hygiene
         run: |

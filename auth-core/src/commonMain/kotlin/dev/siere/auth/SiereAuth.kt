@@ -29,6 +29,8 @@ public class SiereAuth(
 
     public suspend fun signInWithApple(): AuthResult<AuthUser> = provider.signInWithApple()
 
+    public suspend fun signInWithOpenId(): AuthResult<AuthUser> = provider.signInWithOpenId()
+
     public suspend fun signInWithEmail(
         email: String,
         password: String,

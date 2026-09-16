@@ -34,6 +34,8 @@ internal class FakeAuthProvider(
 
     override suspend fun signInWithApple(): AuthResult<AuthUser> = signIn()
 
+    override suspend fun signInWithOpenId(): AuthResult<AuthUser> = signIn()
+
     override suspend fun signInWithEmail(
         email: String,
         password: String,
