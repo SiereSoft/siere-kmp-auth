@@ -159,8 +159,8 @@ fun SampleApp(options: List<ProviderOption>) {
                 }
 
                 Text(
-                    "Demo is credential-free. Firebase and Supabase appear only after local " +
-                        "consumer configuration is supplied.",
+                    "Demo is credential-free. Local OIDC uses the disposable Keycloak realm; " +
+                        "Firebase and Supabase appear only after local configuration is supplied.",
                     style = MaterialTheme.typography.bodySmall,
                 )
 
@@ -202,6 +202,9 @@ fun SampleApp(options: List<ProviderOption>) {
                 }
                 ElevatedButton(onClick = { run { auth.signInWithApple() } }, modifier = buttonWidth()) {
                     Text("Sign in with Apple")
+                }
+                ElevatedButton(onClick = { run { auth.signInWithOpenId() } }, modifier = buttonWidth()) {
+                    Text("Sign in with OpenID Connect")
                 }
                 ElevatedButton(onClick = { run { auth.signInAnonymously() } }, modifier = buttonWidth()) {
                     Text("Continue as guest")

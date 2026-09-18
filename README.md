@@ -15,7 +15,7 @@ Provider-console or host-app configuration may still be required; follow the lin
 |---|---:|:---:|:---:|:---:|:---:|:---:|
 | [Firebase](auth-firebase/README.md) | `0.1.0` | ✓ | ✓ | ✓ | ✓ | ✓ |
 | [Supabase](auth-supabase/README.md) | `0.1.0` | ✓ | ✓ | ✓ | ✓ | ✓ |
-| [OpenID Connect](auth-oidc/README.md) | `0.1.0` | — | — | ✓ | — | — |
+| [OpenID Connect](auth-oidc/README.md) | next | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 All multiplatform modules are built with Kotlin `2.4.10`. Android artifacts require API 30 or
 newer. The Firebase iOS integration is experimental and is verified with Xcode 26.2.
@@ -77,22 +77,12 @@ dependencyResolutionManagement {
 }
 ```
 
-Add the core API and one provider adapter. Firebase and Supabase belong in `commonMain`; the OIDC
-adapter is JVM-only.
+Add the core API and one provider adapter in `commonMain`:
 
 ```kotlin
 commonMain.dependencies {
     implementation("dev.siere.auth:auth-core:0.1.0")
-    implementation("dev.siere.auth:auth-supabase:0.1.0") // or auth-firebase
-}
-```
-
-For JVM OpenID Connect:
-
-```kotlin
-jvmMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.1.0")
-    implementation("dev.siere.auth:auth-oidc:0.1.0")
+    implementation("dev.siere.auth:auth-supabase:0.1.0") // or auth-firebase/auth-oidc
 }
 ```
 
@@ -100,7 +90,7 @@ Continue with the provider you chose:
 
 - [Firebase setup and platform instructions](auth-firebase/README.md)
 - [Supabase setup and redirect instructions](auth-supabase/README.md)
-- [OpenID Connect setup for JVM desktop](auth-oidc/README.md)
+- [OpenID Connect setup for all targets](auth-oidc/README.md)
 
 ## Modules
 
@@ -109,14 +99,15 @@ Continue with the provider you chose:
 | `auth-core` | Provider-neutral identity, state, session, result, error, and lifecycle contracts. |
 | `auth-firebase` | Firebase adapter using GitLive on Android/JVM/JS/iOS and Firebase JS bindings on Wasm. |
 | `auth-supabase` | Supabase Auth adapter with a matching Ktor engine for each target. |
-| `auth-oidc` | JVM desktop OIDC public client with discovery, PKCE, token validation, refresh, and restoration. |
-| `sample` | Compose Multiplatform sample with a credential-free Demo provider. |
+| `auth-oidc` | Multiplatform OIDC public client with discovery, PKCE, signed token validation, refresh, and host-owned redirect/storage integration. |
+| `sample` | Compose Multiplatform sample with a credential-free Demo provider and local Android OIDC flow. |
 | `sample-jvm-oidc` | Compose Desktop OIDC sample with a disposable local Keycloak realm. |
 
 ## Samples
 
-The multiplatform sample starts with the in-memory **Demo** provider and contains no Siere API keys,
-Firebase files, OAuth clients, Supabase projects, or test accounts.
+The multiplatform sample uses the in-memory **Demo** provider on most targets and a disposable local
+Keycloak client on Android. It contains no Siere API keys, Firebase files, or Supabase projects; the
+source-controlled Android OIDC client and demo account are only for the loopback development realm.
 
 ```shell
 ./gradlew :sample:jsBrowserDistribution :sample:wasmJsBrowserDistribution

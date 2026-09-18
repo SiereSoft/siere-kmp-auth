@@ -1,25 +1,25 @@
-public final class dev/siere/auth/oidc/EncryptedFileJvmOidcSessionStore : dev/siere/auth/oidc/JvmOidcSessionStore {
-	public fun <init> (Ljava/nio/file/Path;Ljava/lang/String;)V
-	public synthetic fun <init> (Ljava/nio/file/Path;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+public final class dev/siere/auth/oidc/InMemoryOidcSessionStore : dev/siere/auth/oidc/OidcSessionStore {
+	public fun <init> ()V
 	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class dev/siere/auth/oidc/JvmOidcBrowserLauncher {
-	public abstract fun open (Ljava/net/URI;)Z
+public abstract interface class dev/siere/auth/oidc/OidcAuthorizationHandler {
+	public abstract fun authorize (Ldev/siere/auth/oidc/OidcAuthorizationRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
-public abstract interface class dev/siere/auth/oidc/JvmOidcSessionStore {
-	public abstract fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
-	public abstract fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
-}
-
-public final class dev/siere/auth/oidc/OidcAuthProviderKt {
-	public static final fun OidcAuthProvider (Ldev/siere/auth/oidc/OidcConfiguration;Ldev/siere/auth/oidc/JvmOidcBrowserLauncher;Ldev/siere/auth/oidc/JvmOidcSessionStore;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
-	public static synthetic fun OidcAuthProvider$default (Ldev/siere/auth/oidc/OidcConfiguration;Ldev/siere/auth/oidc/JvmOidcBrowserLauncher;Ldev/siere/auth/oidc/JvmOidcSessionStore;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
-	public static final fun defaultJvmOidcSessionStore (Ldev/siere/auth/oidc/OidcConfiguration;)Ldev/siere/auth/oidc/JvmOidcSessionStore;
+public final class dev/siere/auth/oidc/OidcAuthorizationRequest {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;)Ldev/siere/auth/oidc/OidcAuthorizationRequest;
+	public static synthetic fun copy$default (Ldev/siere/auth/oidc/OidcAuthorizationRequest;Ljava/lang/String;Ljava/lang/String;ILjava/lang/Object;)Ldev/siere/auth/oidc/OidcAuthorizationRequest;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAuthorizationUrl ()Ljava/lang/String;
+	public final fun getRedirectUri ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
 }
 
 public final class dev/siere/auth/oidc/OidcConfiguration {
@@ -50,8 +50,14 @@ public final class dev/siere/auth/oidc/OidcConfiguration {
 	public fun toString ()Ljava/lang/String;
 }
 
-public final class dev/siere/auth/oidc/SystemJvmOidcBrowserLauncher : dev/siere/auth/oidc/JvmOidcBrowserLauncher {
-	public static final field INSTANCE Ldev/siere/auth/oidc/SystemJvmOidcBrowserLauncher;
-	public fun open (Ljava/net/URI;)Z
+public final class dev/siere/auth/oidc/OidcPlatformKt {
+	public static final fun OidcAuthProvider (Ldev/siere/auth/oidc/OidcConfiguration;Ljava/lang/String;Ldev/siere/auth/oidc/OidcAuthorizationHandler;Ldev/siere/auth/oidc/OidcSessionStore;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static synthetic fun OidcAuthProvider$default (Ldev/siere/auth/oidc/OidcConfiguration;Ljava/lang/String;Ldev/siere/auth/oidc/OidcAuthorizationHandler;Ldev/siere/auth/oidc/OidcSessionStore;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
+}
+
+public abstract interface class dev/siere/auth/oidc/OidcSessionStore {
+	public abstract fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 

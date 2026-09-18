@@ -1,4 +1,4 @@
-# OpenID Connect on JVM desktop
+# OpenID Connect
 
 The OpenID Connect documentation now lives with the provider module:
 

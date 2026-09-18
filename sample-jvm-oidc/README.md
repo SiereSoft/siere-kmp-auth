@@ -30,6 +30,21 @@ Stop it when finished:
 ./gradlew :sample-jvm-oidc:keycloakDown
 ```
 
+## Run the Android sample
+
+Start an emulator, expose the loopback-only Keycloak port to it, and install the sample:
+
+```shell
+adb reverse tcp:8080 tcp:8080
+./gradlew :sample:installDebug
+adb shell am start -n dev.siere.auth.sample/.MainActivity
+```
+
+Select **Local OIDC**, tap **Sign in with OpenID Connect**, and use the same demo credentials.
+The Android client is public, requires PKCE `S256`, and accepts only
+`dev.siere.auth.sample://oauth/callback`. Cleartext traffic is enabled only in this local sample so
+the emulator can use the loopback development realm; deployed apps should use an HTTPS issuer.
+
 The source-controlled development credentials in this directory protect only the loopback-bound,
 disposable realm. They are intentionally public and must never be reused in a deployed Keycloak
 installation. Keycloak's bootstrap administrator is also local-only and uses `admin` / `admin`.
