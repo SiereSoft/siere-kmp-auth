@@ -1,0 +1,80 @@
+// Klib ABI Dump
+// Targets: [iosArm64, iosSimulatorArm64, js, wasmJs]
+// Rendering settings:
+// - Signature version: 2
+// - Show manifest properties: true
+// - Show declarations: true
+
+// Library unique name: <dev.siere.auth:auth-oidc>
+abstract fun interface dev.siere.auth.oidc/OidcAuthorizationHandler { // dev.siere.auth.oidc/OidcAuthorizationHandler|null[0]
+    abstract suspend fun authorize(dev.siere.auth.oidc/OidcAuthorizationRequest): kotlin/String // dev.siere.auth.oidc/OidcAuthorizationHandler.authorize|authorize(dev.siere.auth.oidc.OidcAuthorizationRequest){}[0]
+}
+
+abstract interface dev.siere.auth.oidc/OidcSessionStore { // dev.siere.auth.oidc/OidcSessionStore|null[0]
+    abstract suspend fun clear() // dev.siere.auth.oidc/OidcSessionStore.clear|clear(){}[0]
+    abstract suspend fun read(): kotlin/ByteArray? // dev.siere.auth.oidc/OidcSessionStore.read|read(){}[0]
+    abstract suspend fun write(kotlin/ByteArray) // dev.siere.auth.oidc/OidcSessionStore.write|write(kotlin.ByteArray){}[0]
+}
+
+final class dev.siere.auth.oidc/InMemoryOidcSessionStore : dev.siere.auth.oidc/OidcSessionStore { // dev.siere.auth.oidc/InMemoryOidcSessionStore|null[0]
+    constructor <init>() // dev.siere.auth.oidc/InMemoryOidcSessionStore.<init>|<init>(){}[0]
+
+    final suspend fun clear() // dev.siere.auth.oidc/InMemoryOidcSessionStore.clear|clear(){}[0]
+    final suspend fun read(): kotlin/ByteArray? // dev.siere.auth.oidc/InMemoryOidcSessionStore.read|read(){}[0]
+    final suspend fun write(kotlin/ByteArray) // dev.siere.auth.oidc/InMemoryOidcSessionStore.write|write(kotlin.ByteArray){}[0]
+}
+
+final class dev.siere.auth.oidc/OidcAuthorizationRequest { // dev.siere.auth.oidc/OidcAuthorizationRequest|null[0]
+    constructor <init>(kotlin/String, kotlin/String) // dev.siere.auth.oidc/OidcAuthorizationRequest.<init>|<init>(kotlin.String;kotlin.String){}[0]
+
+    final val authorizationUrl // dev.siere.auth.oidc/OidcAuthorizationRequest.authorizationUrl|{}authorizationUrl[0]
+        final fun <get-authorizationUrl>(): kotlin/String // dev.siere.auth.oidc/OidcAuthorizationRequest.authorizationUrl.<get-authorizationUrl>|<get-authorizationUrl>(){}[0]
+    final val redirectUri // dev.siere.auth.oidc/OidcAuthorizationRequest.redirectUri|{}redirectUri[0]
+        final fun <get-redirectUri>(): kotlin/String // dev.siere.auth.oidc/OidcAuthorizationRequest.redirectUri.<get-redirectUri>|<get-redirectUri>(){}[0]
+
+    final fun component1(): kotlin/String // dev.siere.auth.oidc/OidcAuthorizationRequest.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.siere.auth.oidc/OidcAuthorizationRequest.component2|component2(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ...): dev.siere.auth.oidc/OidcAuthorizationRequest // dev.siere.auth.oidc/OidcAuthorizationRequest.copy|copy(kotlin.String;kotlin.String){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth.oidc/OidcAuthorizationRequest.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.siere.auth.oidc/OidcAuthorizationRequest.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.siere.auth.oidc/OidcAuthorizationRequest.toString|toString(){}[0]
+}
+
+final class dev.siere.auth.oidc/OidcConfiguration { // dev.siere.auth.oidc/OidcConfiguration|null[0]
+    constructor <init>(kotlin/String, kotlin/String, kotlin.collections/Set<kotlin/String> = ..., kotlin/String = ..., kotlin/String = ..., kotlin.collections/Map<kotlin/String, kotlin/String> = ..., kotlin/Long = ..., kotlin/Long = ..., kotlin/Boolean = ...) // dev.siere.auth.oidc/OidcConfiguration.<init>|<init>(kotlin.String;kotlin.String;kotlin.collections.Set<kotlin.String>;kotlin.String;kotlin.String;kotlin.collections.Map<kotlin.String,kotlin.String>;kotlin.Long;kotlin.Long;kotlin.Boolean){}[0]
+
+    final val additionalAuthorizationParameters // dev.siere.auth.oidc/OidcConfiguration.additionalAuthorizationParameters|{}additionalAuthorizationParameters[0]
+        final fun <get-additionalAuthorizationParameters>(): kotlin.collections/Map<kotlin/String, kotlin/String> // dev.siere.auth.oidc/OidcConfiguration.additionalAuthorizationParameters.<get-additionalAuthorizationParameters>|<get-additionalAuthorizationParameters>(){}[0]
+    final val allowInsecureHttpForTesting // dev.siere.auth.oidc/OidcConfiguration.allowInsecureHttpForTesting|{}allowInsecureHttpForTesting[0]
+        final fun <get-allowInsecureHttpForTesting>(): kotlin/Boolean // dev.siere.auth.oidc/OidcConfiguration.allowInsecureHttpForTesting.<get-allowInsecureHttpForTesting>|<get-allowInsecureHttpForTesting>(){}[0]
+    final val callbackTimeoutMillis // dev.siere.auth.oidc/OidcConfiguration.callbackTimeoutMillis|{}callbackTimeoutMillis[0]
+        final fun <get-callbackTimeoutMillis>(): kotlin/Long // dev.siere.auth.oidc/OidcConfiguration.callbackTimeoutMillis.<get-callbackTimeoutMillis>|<get-callbackTimeoutMillis>(){}[0]
+    final val clientId // dev.siere.auth.oidc/OidcConfiguration.clientId|{}clientId[0]
+        final fun <get-clientId>(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.clientId.<get-clientId>|<get-clientId>(){}[0]
+    final val clockSkewSeconds // dev.siere.auth.oidc/OidcConfiguration.clockSkewSeconds|{}clockSkewSeconds[0]
+        final fun <get-clockSkewSeconds>(): kotlin/Long // dev.siere.auth.oidc/OidcConfiguration.clockSkewSeconds.<get-clockSkewSeconds>|<get-clockSkewSeconds>(){}[0]
+    final val discoveryUrl // dev.siere.auth.oidc/OidcConfiguration.discoveryUrl|{}discoveryUrl[0]
+        final fun <get-discoveryUrl>(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.discoveryUrl.<get-discoveryUrl>|<get-discoveryUrl>(){}[0]
+    final val providerId // dev.siere.auth.oidc/OidcConfiguration.providerId|{}providerId[0]
+        final fun <get-providerId>(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.providerId.<get-providerId>|<get-providerId>(){}[0]
+    final val scopes // dev.siere.auth.oidc/OidcConfiguration.scopes|{}scopes[0]
+        final fun <get-scopes>(): kotlin.collections/Set<kotlin/String> // dev.siere.auth.oidc/OidcConfiguration.scopes.<get-scopes>|<get-scopes>(){}[0]
+    final val storageName // dev.siere.auth.oidc/OidcConfiguration.storageName|{}storageName[0]
+        final fun <get-storageName>(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.storageName.<get-storageName>|<get-storageName>(){}[0]
+
+    final fun component1(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.component1|component1(){}[0]
+    final fun component2(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.component2|component2(){}[0]
+    final fun component3(): kotlin.collections/Set<kotlin/String> // dev.siere.auth.oidc/OidcConfiguration.component3|component3(){}[0]
+    final fun component4(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.component4|component4(){}[0]
+    final fun component5(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.component5|component5(){}[0]
+    final fun component6(): kotlin.collections/Map<kotlin/String, kotlin/String> // dev.siere.auth.oidc/OidcConfiguration.component6|component6(){}[0]
+    final fun component7(): kotlin/Long // dev.siere.auth.oidc/OidcConfiguration.component7|component7(){}[0]
+    final fun component8(): kotlin/Long // dev.siere.auth.oidc/OidcConfiguration.component8|component8(){}[0]
+    final fun component9(): kotlin/Boolean // dev.siere.auth.oidc/OidcConfiguration.component9|component9(){}[0]
+    final fun copy(kotlin/String = ..., kotlin/String = ..., kotlin.collections/Set<kotlin/String> = ..., kotlin/String = ..., kotlin/String = ..., kotlin.collections/Map<kotlin/String, kotlin/String> = ..., kotlin/Long = ..., kotlin/Long = ..., kotlin/Boolean = ...): dev.siere.auth.oidc/OidcConfiguration // dev.siere.auth.oidc/OidcConfiguration.copy|copy(kotlin.String;kotlin.String;kotlin.collections.Set<kotlin.String>;kotlin.String;kotlin.String;kotlin.collections.Map<kotlin.String,kotlin.String>;kotlin.Long;kotlin.Long;kotlin.Boolean){}[0]
+    final fun equals(kotlin/Any?): kotlin/Boolean // dev.siere.auth.oidc/OidcConfiguration.equals|equals(kotlin.Any?){}[0]
+    final fun hashCode(): kotlin/Int // dev.siere.auth.oidc/OidcConfiguration.hashCode|hashCode(){}[0]
+    final fun toString(): kotlin/String // dev.siere.auth.oidc/OidcConfiguration.toString|toString(){}[0]
+}
+
+final fun dev.siere.auth.oidc/OidcAuthProvider(dev.siere.auth.oidc/OidcConfiguration, kotlin/String, dev.siere.auth.oidc/OidcAuthorizationHandler, dev.siere.auth.oidc/OidcSessionStore = ..., dev.siere.auth/DispatcherProvider = ...): dev.siere.auth/AuthProvider // dev.siere.auth.oidc/OidcAuthProvider|OidcAuthProvider(dev.siere.auth.oidc.OidcConfiguration;kotlin.String;dev.siere.auth.oidc.OidcAuthorizationHandler;dev.siere.auth.oidc.OidcSessionStore;dev.siere.auth.DispatcherProvider){}[0]

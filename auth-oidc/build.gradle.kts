@@ -1,7 +1,9 @@
 import org.gradle.api.publish.maven.MavenPublication
+import org.jetbrains.kotlin.gradle.ExperimentalWasmDsl
 
 plugins {
     alias(libs.plugins.multiplatform)
+    alias(libs.plugins.android.library)
     `maven-publish`
 }
 
@@ -10,21 +12,55 @@ kotlin {
 
     jvm()
 
+    androidTarget {
+        publishLibraryVariants("release")
+    }
+
+    js {
+        browser()
+    }
+
+    @OptIn(ExperimentalWasmDsl::class)
+    wasmJs {
+        browser()
+    }
+
+    iosArm64()
+    iosSimulatorArm64()
+
+    applyDefaultHierarchyTemplate()
+
     sourceSets {
         commonMain.dependencies {
             api(project(":auth-core"))
             implementation(libs.kotlinx.coroutines.core)
+            implementation(libs.kotlinx.serialization.json)
+            implementation(libs.ktor.client.core)
+            implementation(libs.cryptography.core)
+            implementation(libs.cryptography.provider.optimal)
+            implementation(libs.cryptography.random)
         }
 
-        jvmMain.dependencies {
-            implementation(libs.kotlinx.serialization.json)
-        }
+        jvmMain.dependencies { implementation(libs.ktor.client.cio) }
         jvmMain.get().kotlin.srcDir(rootProject.file("auth-jvm-shared/src/main/kotlin"))
+        androidMain.dependencies { implementation(libs.ktor.client.okhttp) }
+        iosMain.dependencies { implementation(libs.ktor.client.darwin) }
+        jsMain.dependencies { implementation(libs.ktor.client.js) }
+        wasmJsMain.dependencies { implementation(libs.ktor.client.js) }
 
         commonTest.dependencies {
             implementation(kotlin("test"))
             implementation(libs.kotlinx.coroutines.test)
+            implementation(libs.ktor.client.mock)
         }
+    }
+}
+
+android {
+    namespace = "dev.siere.auth.oidc"
+    compileSdk = 35
+    defaultConfig {
+        minSdk = 30
     }
 }
 

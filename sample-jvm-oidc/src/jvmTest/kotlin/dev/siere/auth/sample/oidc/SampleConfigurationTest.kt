@@ -65,15 +65,19 @@ class SampleConfigurationTest {
     }
 
     @Test
-    fun importedRealmDefinesAPublicPkceClientAndDemoUser() {
+    fun importedRealmDefinesPublicPkceClientsAndDemoUser() {
         val realmPath = Path.of("keycloak", "siere-realm.json")
         val realm = Json.parseToJsonElement(Files.readString(realmPath)).jsonObject
-        val client =
+        val clients =
             realm
                 .getValue("clients")
                 .jsonArray
-                .single()
-                .jsonObject
+                .associate { client ->
+                    val definition = client.jsonObject
+                    definition.getValue("clientId").jsonPrimitive.content to definition
+                }
+        val jvmClient = clients.getValue("siere-jvm-oidc")
+        val androidClient = clients.getValue("siere-android-oidc")
         val user =
             realm
                 .getValue("users")
@@ -81,7 +85,29 @@ class SampleConfigurationTest {
                 .single()
                 .jsonObject
 
-        assertEquals("siere-jvm-oidc", client.getValue("clientId").jsonPrimitive.content)
+        assertPublicPkceClient(jvmClient)
+        assertPublicPkceClient(androidClient)
+        assertEquals(
+            "http://127.0.0.1/callback",
+            jvmClient
+                .getValue("redirectUris")
+                .jsonArray
+                .single()
+                .jsonPrimitive.content,
+        )
+        assertEquals(
+            "dev.siere.auth.sample://oauth/callback",
+            androidClient
+                .getValue("redirectUris")
+                .jsonArray
+                .single()
+                .jsonPrimitive.content,
+        )
+        assertEquals("demo", user.getValue("username").jsonPrimitive.content)
+        assertEquals("demo@example.invalid", user.getValue("email").jsonPrimitive.content)
+    }
+
+    private fun assertPublicPkceClient(client: kotlinx.serialization.json.JsonObject) {
         assertEquals("true", client.getValue("publicClient").jsonPrimitive.content)
         assertEquals(
             "S256",
@@ -91,16 +117,6 @@ class SampleConfigurationTest {
                 .getValue("pkce.code.challenge.method")
                 .jsonPrimitive.content,
         )
-        assertEquals(
-            "http://127.0.0.1/callback",
-            client
-                .getValue("redirectUris")
-                .jsonArray
-                .single()
-                .jsonPrimitive.content,
-        )
-        assertEquals("demo", user.getValue("username").jsonPrimitive.content)
-        assertEquals("demo@example.invalid", user.getValue("email").jsonPrimitive.content)
         assertEquals(
             setOf("profile", "email"),
             client

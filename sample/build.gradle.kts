@@ -40,8 +40,7 @@ kotlin {
             implementation(compose.material3)
             implementation(libs.kotlinx.coroutines.core)
             implementation(project(":auth-core"))
-            implementation(project(":auth-firebase"))
-            implementation(project(":auth-supabase"))
+            implementation(project(":auth-oidc"))
         }
 
         commonTest.dependencies {
@@ -55,10 +54,23 @@ kotlin {
 
         jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
+            implementation(project(":auth-firebase"))
+        }
+
+        iosMain.dependencies {
+            implementation(project(":auth-firebase"))
+            implementation(project(":auth-supabase"))
+        }
+
+        jsMain.dependencies {
+            implementation(project(":auth-firebase"))
+            implementation(project(":auth-supabase"))
         }
 
         wasmJsMain.dependencies {
             implementation(libs.kotlinx.browser)
+            implementation(project(":auth-firebase"))
+            implementation(project(":auth-supabase"))
         }
     }
 }

@@ -12,15 +12,12 @@ import javax.crypto.spec.GCMParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
 /** Persistence boundary for sensitive OIDC session data. Implementations must protect it at rest. */
-public interface JvmOidcSessionStore {
-    /** Returns the previously stored session bytes, or `null`. */
-    public suspend fun read(): ByteArray?
+public interface JvmOidcSessionStore : OidcSessionStore {
+    override suspend fun read(): ByteArray?
 
-    /** Securely and atomically replaces the stored session bytes. */
-    public suspend fun write(value: ByteArray)
+    override suspend fun write(value: ByteArray)
 
-    /** Removes the stored session. */
-    public suspend fun clear()
+    override suspend fun clear()
 }
 
 /**
