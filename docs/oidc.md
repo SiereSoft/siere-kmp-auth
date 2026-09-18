@@ -29,8 +29,8 @@ client-secret option for OIDC.
 kotlin {
     sourceSets {
         jvmMain.dependencies {
-            implementation("dev.siere.auth:auth-core:0.0.1")
-            implementation("dev.siere.auth:auth-oidc:0.0.1")
+            implementation("dev.siere.auth:auth-core:0.1.0")
+            implementation("dev.siere.auth:auth-oidc:0.1.0")
         }
     }
 }
