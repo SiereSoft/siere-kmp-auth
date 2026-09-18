@@ -1,6 +1,6 @@
 # Firebase provider
 
-Use `auth-firebase` when Firebase Authentication owns the user account and session. Version `0.1.0`
+Use `auth-firebase` when Firebase Authentication owns the user account and session. Version `0.2.0`
 supports Android, iOS, JVM, JavaScript, and Wasm.
 
 [Back to the project overview](../README.md)
@@ -27,8 +27,8 @@ After adding the GitHub Packages repository from the [project installation guide
 
 ```kotlin
 commonMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.1.0")
-    implementation("dev.siere.auth:auth-firebase:0.1.0")
+    implementation("dev.siere.auth:auth-core:0.2.0")
+    implementation("dev.siere.auth:auth-firebase:0.2.0")
 }
 ```
 
