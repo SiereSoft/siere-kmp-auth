@@ -4,8 +4,8 @@ Provider-neutral authentication for Kotlin Multiplatform clients. The API target
 Android, JVM, JavaScript, Kotlin/Wasm, and iOS, with Firebase and Supabase adapters, a JVM OpenID
 Connect adapter, and credential-free samples.
 
-> **Status:** `0.0.1` initial release. Live provider flows require configuration owned by the
-> consuming application. The Firebase adapter depends on the
+> **Status:** `0.1.0` adds OpenID Connect for JVM desktop. Live provider flows require configuration
+> owned by the consuming application. The Firebase adapter depends on the
 > Siere-verified GitLive Firebase bridge `3.0.0-alpha01-siere.37da67e3`; consumers should treat its
 > ABI and behavior as pre-release until the bridge changes are accepted upstream and a stable
 > upstream release is available.
@@ -157,8 +157,8 @@ Depend on the provider-neutral core and the adapters required by the application
 
 ```kotlin
 commonMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.0.1")
-    implementation("dev.siere.auth:auth-supabase:0.0.1") // or auth-firebase
+    implementation("dev.siere.auth:auth-core:0.1.0")
+    implementation("dev.siere.auth:auth-supabase:0.1.0") // or auth-firebase
 }
 ```
 
@@ -166,8 +166,8 @@ For OpenID Connect on JVM desktop, add the adapter to `jvmMain`:
 
 ```kotlin
 jvmMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.0.1")
-    implementation("dev.siere.auth:auth-oidc:0.0.1")
+    implementation("dev.siere.auth:auth-core:0.1.0")
+    implementation("dev.siere.auth:auth-oidc:0.1.0")
 }
 ```
 
