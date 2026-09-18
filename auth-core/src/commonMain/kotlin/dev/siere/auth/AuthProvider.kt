@@ -26,6 +26,19 @@ public interface AuthProvider {
     /** Signs in with the platform's Apple flow (popup, sheet, or redirect). */
     public suspend fun signInWithApple(): AuthResult<AuthUser>
 
+    /**
+     * Signs in through the configured OpenID Connect provider.
+     *
+     * Backends that are not direct OIDC clients return [AuthError.Unsupported].
+     */
+    public suspend fun signInWithOpenId(): AuthResult<AuthUser> =
+        AuthResult.Failure(
+            AuthError.Unsupported(
+                operation = "OpenID Connect sign-in",
+                target = "this provider",
+            ),
+        )
+
     /** Signs in an existing email/password account. */
     public suspend fun signInWithEmail(
         email: String,

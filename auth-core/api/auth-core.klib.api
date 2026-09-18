@@ -23,6 +23,7 @@ abstract interface dev.siere.auth/AuthProvider { // dev.siere.auth/AuthProvider|
     abstract suspend fun startPhoneLinking(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/AuthProvider.startPhoneLinking|startPhoneLinking(kotlin.String){}[0]
     abstract suspend fun startPhoneSignIn(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/AuthProvider.startPhoneSignIn|startPhoneSignIn(kotlin.String){}[0]
     open fun close() // dev.siere.auth/AuthProvider.close|close(){}[0]
+    open suspend fun signInWithOpenId(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/AuthProvider.signInWithOpenId|signInWithOpenId(){}[0]
 }
 
 abstract interface dev.siere.auth/DispatcherProvider { // dev.siere.auth/DispatcherProvider|null[0]
@@ -129,6 +130,7 @@ final class dev.siere.auth/SiereAuth { // dev.siere.auth/SiereAuth|null[0]
     final suspend fun signInWithApple(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithApple|signInWithApple(){}[0]
     final suspend fun signInWithEmail(kotlin/String, kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithEmail|signInWithEmail(kotlin.String;kotlin.String){}[0]
     final suspend fun signInWithGoogle(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithGoogle|signInWithGoogle(){}[0]
+    final suspend fun signInWithOpenId(): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signInWithOpenId|signInWithOpenId(){}[0]
     final suspend fun signOut(): dev.siere.auth/AuthResult<kotlin/Unit> // dev.siere.auth/SiereAuth.signOut|signOut(){}[0]
     final suspend fun signUpWithEmail(kotlin/String, kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/AuthUser> // dev.siere.auth/SiereAuth.signUpWithEmail|signUpWithEmail(kotlin.String;kotlin.String){}[0]
     final suspend fun startPhoneLinking(kotlin/String): dev.siere.auth/AuthResult<dev.siere.auth/PhoneVerificationSession> // dev.siere.auth/SiereAuth.startPhoneLinking|startPhoneLinking(kotlin.String){}[0]

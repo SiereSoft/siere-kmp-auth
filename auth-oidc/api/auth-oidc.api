@@ -1,0 +1,57 @@
+public final class dev/siere/auth/oidc/EncryptedFileJvmOidcSessionStore : dev/siere/auth/oidc/JvmOidcSessionStore {
+	public fun <init> (Ljava/nio/file/Path;Ljava/lang/String;)V
+	public synthetic fun <init> (Ljava/nio/file/Path;Ljava/lang/String;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public abstract interface class dev/siere/auth/oidc/JvmOidcBrowserLauncher {
+	public abstract fun open (Ljava/net/URI;)Z
+}
+
+public abstract interface class dev/siere/auth/oidc/JvmOidcSessionStore {
+	public abstract fun clear (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun read (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public abstract fun write ([BLkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class dev/siere/auth/oidc/OidcAuthProviderKt {
+	public static final fun OidcAuthProvider (Ldev/siere/auth/oidc/OidcConfiguration;Ldev/siere/auth/oidc/JvmOidcBrowserLauncher;Ldev/siere/auth/oidc/JvmOidcSessionStore;Ldev/siere/auth/DispatcherProvider;)Ldev/siere/auth/AuthProvider;
+	public static synthetic fun OidcAuthProvider$default (Ldev/siere/auth/oidc/OidcConfiguration;Ldev/siere/auth/oidc/JvmOidcBrowserLauncher;Ldev/siere/auth/oidc/JvmOidcSessionStore;Ldev/siere/auth/DispatcherProvider;ILjava/lang/Object;)Ldev/siere/auth/AuthProvider;
+	public static final fun defaultJvmOidcSessionStore (Ldev/siere/auth/oidc/OidcConfiguration;)Ldev/siere/auth/oidc/JvmOidcSessionStore;
+}
+
+public final class dev/siere/auth/oidc/OidcConfiguration {
+	public fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;JJZ)V
+	public synthetic fun <init> (Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;JJZILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun component2 ()Ljava/lang/String;
+	public final fun component3 ()Ljava/util/Set;
+	public final fun component4 ()Ljava/lang/String;
+	public final fun component5 ()Ljava/lang/String;
+	public final fun component6 ()Ljava/util/Map;
+	public final fun component7 ()J
+	public final fun component8 ()J
+	public final fun component9 ()Z
+	public final fun copy (Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;JJZ)Ldev/siere/auth/oidc/OidcConfiguration;
+	public static synthetic fun copy$default (Ldev/siere/auth/oidc/OidcConfiguration;Ljava/lang/String;Ljava/lang/String;Ljava/util/Set;Ljava/lang/String;Ljava/lang/String;Ljava/util/Map;JJZILjava/lang/Object;)Ldev/siere/auth/oidc/OidcConfiguration;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getAdditionalAuthorizationParameters ()Ljava/util/Map;
+	public final fun getAllowInsecureHttpForTesting ()Z
+	public final fun getCallbackTimeoutMillis ()J
+	public final fun getClientId ()Ljava/lang/String;
+	public final fun getClockSkewSeconds ()J
+	public final fun getDiscoveryUrl ()Ljava/lang/String;
+	public final fun getProviderId ()Ljava/lang/String;
+	public final fun getScopes ()Ljava/util/Set;
+	public final fun getStorageName ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class dev/siere/auth/oidc/SystemJvmOidcBrowserLauncher : dev/siere/auth/oidc/JvmOidcBrowserLauncher {
+	public static final field INSTANCE Ldev/siere/auth/oidc/SystemJvmOidcBrowserLauncher;
+	public fun open (Ljava/net/URI;)Z
+}
+

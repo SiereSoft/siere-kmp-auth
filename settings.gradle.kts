@@ -50,4 +50,6 @@ dependencyResolutionManagement {
 include(":auth-core")
 include(":auth-firebase")
 include(":auth-supabase")
+include(":auth-oidc")
 include(":sample")
+include(":sample-jvm-oidc")

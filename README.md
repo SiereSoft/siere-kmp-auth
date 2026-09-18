@@ -1,8 +1,8 @@
 # Siere KMP Auth
 
 Provider-neutral authentication for Kotlin Multiplatform clients. The API targets
-Android, JVM, JavaScript, Kotlin/Wasm, and iOS, with Firebase and Supabase adapters plus a
-credential-free Compose Multiplatform sample.
+Android, JVM, JavaScript, Kotlin/Wasm, and iOS, with Firebase and Supabase adapters, a JVM OpenID
+Connect adapter, and credential-free samples.
 
 > **Status:** `0.0.1` initial release. Live provider flows require configuration owned by the
 > consuming application. The Firebase adapter depends on the
@@ -17,7 +17,9 @@ credential-free Compose Multiplatform sample.
 | `auth-core` | Provider-neutral API: normalized identity, observable auth state, credential snapshots, typed results/errors, phone challenge, and lifecycle. No provider or UI dependency. |
 | `auth-firebase` | Firebase adapter using GitLive on Android/JVM/JS/iOS and Firebase JS bindings on Wasm. |
 | `auth-supabase` | Supabase Auth adapter with a matching Ktor engine for each target. |
+| `auth-oidc` | JVM desktop OpenID Connect public client with discovery, PKCE, ID-token validation, refresh, and session restoration. |
 | `sample` | Compose sample with a credential-free Demo provider and optional consumer-supplied browser/iOS configuration. |
+| `sample-jvm-oidc` | Standalone Compose Desktop OIDC sample with a disposable local Keycloak configuration. |
 
 ## Core contract
 
@@ -118,6 +120,15 @@ wait is bounded; always treat `authState` as the source of truth across navigati
 Deterministic tests validate mapping, error codes, token refresh decisions, metadata, and redirect
 transition behavior. Live Supabase acceptance remains consumer-configuration-gated.
 
+### OpenID Connect
+
+`auth-oidc` supports Authorization Code Flow with PKCE on JVM desktop. It opens the system browser,
+receives the authorization response on an ephemeral `127.0.0.1` port, validates signed ID tokens,
+refreshes sessions, and restores protected local sessions. It deliberately has no client-secret
+option because a distributed desktop application cannot keep one confidential.
+
+See [OpenID Connect on JVM](docs/oidc.md) for setup and security boundaries.
+
 ## Installation
 
 Add the Siere GitHub Packages repository. Siere Auth and its exact verified Firebase bridge
@@ -148,6 +159,15 @@ Depend on the provider-neutral core and the adapters required by the application
 commonMain.dependencies {
     implementation("dev.siere.auth:auth-core:0.0.1")
     implementation("dev.siere.auth:auth-supabase:0.0.1") // or auth-firebase
+}
+```
+
+For OpenID Connect on JVM desktop, add the adapter to `jvmMain`:
+
+```kotlin
+jvmMain.dependencies {
+    implementation("dev.siere.auth:auth-core:0.0.1")
+    implementation("dev.siere.auth:auth-oidc:0.0.1")
 }
 ```
 
@@ -268,6 +288,16 @@ the active authentication origin prominently whenever Firebase or Supabase is se
 deployed sample or application, inject the reviewed public client configuration at build/deploy time
 and apply the normal XSS and browser-extension threat model instead of relying on mutable storage.
 
+The standalone JVM OIDC sample needs no external account or billing configuration:
+
+```shell
+./gradlew :sample-jvm-oidc:keycloakUp
+./gradlew :sample-jvm-oidc:run
+```
+
+See [the JVM OIDC sample guide](sample-jvm-oidc/README.md) for its local demo account and cleanup
+command.
+
 Provider-console setup such as authorized domains, OAuth redirect URLs, Apple capabilities, and
 Firebase test phone numbers is also consumer-owned. `.swiftpm-locks/` is a disposable, ignored
 SwiftPM checkout/cache used by local verification; remove it whenever disk space matters and let the
@@ -281,10 +311,12 @@ Credential-free deterministic checks:
 ./gradlew :auth-core:allTests :auth-core:apiCheck \
   :auth-firebase:allTests :auth-firebase:apiCheck \
   :auth-supabase:allTests :auth-supabase:apiCheck \
-  :sample:allTests
+  :auth-oidc:allTests :auth-oidc:apiCheck \
+  :sample:allTests :sample-jvm-oidc:jvmTest
 ./gradlew staticAnalysis
 ./gradlew :sample:assembleDebug \
   :sample:createDistributable :sample:jsBrowserDistribution :sample:wasmJsBrowserDistribution
+./gradlew :sample-jvm-oidc:createDistributable
 python3 scripts/verify_no_secrets.py
 git diff --check
 ```
