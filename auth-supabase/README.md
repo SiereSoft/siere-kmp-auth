@@ -1,6 +1,6 @@
 # Supabase provider
 
-Use `auth-supabase` when Supabase Auth owns the user account and session. Version `0.1.0` supports
+Use `auth-supabase` when Supabase Auth owns the user account and session. Version `0.2.0` supports
 Android, iOS, JVM, JavaScript, and Wasm, and includes the matching Ktor engine for every target.
 
 [Back to the project overview](../README.md)
@@ -31,8 +31,8 @@ After adding the GitHub Packages repository from the [project installation guide
 
 ```kotlin
 commonMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.1.0")
-    implementation("dev.siere.auth:auth-supabase:0.1.0")
+    implementation("dev.siere.auth:auth-core:0.2.0")
+    implementation("dev.siere.auth:auth-supabase:0.2.0")
 }
 ```
 
