@@ -1,13 +1,17 @@
 package dev.siere.auth.supabase
 
+import io.github.jan.supabase.annotations.SupabaseExperimental
+import io.github.jan.supabase.auth.event.AuthEvent
 import io.github.jan.supabase.auth.status.SessionSource
 import io.github.jan.supabase.auth.status.SessionStatus
 import io.github.jan.supabase.auth.user.Identity
 import io.github.jan.supabase.auth.user.UserInfo
 import io.github.jan.supabase.auth.user.UserSession
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.TimeoutCancellationException
 import kotlinx.coroutines.async
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.runTest
@@ -17,16 +21,24 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.test.assertIs
 import kotlin.time.Instant
 
-@OptIn(ExperimentalCoroutinesApi::class)
+@OptIn(ExperimentalCoroutinesApi::class, SupabaseExperimental::class)
 class SupabaseAuthTransitionTest {
     @Test
     fun oauthCompletionSkipsThePreExistingSignedInUser() =
         runTest {
             val statuses = MutableStateFlow<SessionStatus>(authenticatedSession("old-user"))
 
-            val result = async { awaitNextAuthenticatedUser(statuses, timeoutMillis = 1_000) }
+            val result =
+                async(start = CoroutineStart.UNDISPATCHED) {
+                    awaitNextOAuthResult(
+                        statuses,
+                        MutableSharedFlow(),
+                        timeoutMillis = 1_000,
+                    )
+                }
             runCurrent()
 
             assertFalse(result.isCompleted)
@@ -50,7 +62,7 @@ class SupabaseAuthTransitionTest {
             val statuses = MutableStateFlow<SessionStatus>(SessionStatus.NotAuthenticated())
 
             assertFailsWith<AuthCompletionTimeoutException> {
-                awaitNextAuthenticatedUser(statuses, timeoutMillis = 1)
+                awaitNextOAuthResult(statuses, MutableSharedFlow(), timeoutMillis = 1)
             }
         }
 
@@ -61,7 +73,7 @@ class SupabaseAuthTransitionTest {
 
             assertFailsWith<TimeoutCancellationException> {
                 withTimeout(1) {
-                    awaitNextAuthenticatedUser(statuses, timeoutMillis = 60_000)
+                    awaitNextOAuthResult(statuses, MutableSharedFlow(), timeoutMillis = 60_000)
                 }
             }
         }
@@ -71,9 +83,10 @@ class SupabaseAuthTransitionTest {
         runTest {
             val statuses = MutableStateFlow<SessionStatus>(SessionStatus.NotAuthenticated())
             val result =
-                async {
-                    awaitNextAuthenticatedUser(
-                        statuses,
+                async(start = CoroutineStart.UNDISPATCHED) {
+                    awaitNextOAuthResult(
+                        statuses = statuses,
+                        events = MutableSharedFlow(),
                         timeoutMillis = 1_000,
                         expectedProviderId = "google.com",
                     )
@@ -93,7 +106,14 @@ class SupabaseAuthTransitionTest {
         runTest {
             val statuses = MutableStateFlow<SessionStatus>(authenticatedSession("same-user"))
 
-            val result = async { awaitNextAuthenticatedUser(statuses, timeoutMillis = 1_000) }
+            val result =
+                async {
+                    awaitNextOAuthResult(
+                        statuses,
+                        MutableSharedFlow(),
+                        timeoutMillis = 1_000,
+                    )
+                }
             runCurrent()
             statuses.value =
                 authenticatedSession(
@@ -103,6 +123,55 @@ class SupabaseAuthTransitionTest {
                 )
 
             assertEquals("same-user", result.await().uid)
+        }
+
+    @Test
+    fun oauthCancellationCompletesImmediately() =
+        runTest {
+            val statuses = MutableStateFlow<SessionStatus>(SessionStatus.NotAuthenticated())
+            val events = MutableSharedFlow<AuthEvent>(extraBufferCapacity = 1)
+            val result =
+                async {
+                    runCatching {
+                        awaitNextOAuthResult(
+                            statuses = statuses,
+                            events = events,
+                            timeoutMillis = 60_000,
+                            expectedProviderId = "google.com",
+                        )
+                    }
+                }
+            runCurrent()
+
+            events.emit(AuthEvent.OtpError("access_denied", "The user cancelled"))
+
+            val failure = assertIs<OAuthCallbackException>(result.await().exceptionOrNull())
+            assertEquals("access_denied", failure.providerCode)
+        }
+
+    @Test
+    fun oauthCompletionIgnoresAReplayedErrorFromAnEarlierAttempt() =
+        runTest {
+            val statuses = MutableStateFlow<SessionStatus>(SessionStatus.NotAuthenticated())
+            val events = MutableSharedFlow<AuthEvent>(replay = 1)
+            events.emit(AuthEvent.OtpError("stale_error", "Earlier attempt"))
+            val result =
+                async(start = CoroutineStart.UNDISPATCHED) {
+                    runCatching {
+                        awaitNextOAuthResult(
+                            statuses = statuses,
+                            events = events,
+                            timeoutMillis = 60_000,
+                            expectedProviderId = "google.com",
+                        )
+                    }
+                }
+            assertFalse(result.isCompleted)
+
+            events.emit(AuthEvent.OtpError("access_denied", "Current attempt"))
+
+            val failure = assertIs<OAuthCallbackException>(result.await().exceptionOrNull())
+            assertEquals("access_denied", failure.providerCode)
         }
 
     private fun authenticatedSession(

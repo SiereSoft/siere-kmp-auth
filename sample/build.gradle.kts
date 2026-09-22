@@ -62,6 +62,10 @@ kotlin {
             implementation(project(":auth-supabase"))
         }
 
+        iosTest.dependencies {
+            implementation(libs.ktor.client.mock)
+        }
+
         jsMain.dependencies {
             implementation(project(":auth-firebase"))
             implementation(project(":auth-supabase"))
