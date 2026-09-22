@@ -55,6 +55,29 @@
         "email"
       ],
       "optionalClientScopes": []
+    },
+    {
+      "clientId": "siere-ios-oidc",
+      "name": "Siere iOS OIDC sample",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "redirectUris": [
+        "dev.siere.auth.sample://oidc/callback"
+      ],
+      "webOrigins": [],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": [
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": []
     }
   ],
   "users": [

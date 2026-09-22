@@ -44,10 +44,11 @@ class IosSupabaseHost internal constructor(
     private val closeScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
     private var closed = false
 
-    fun makeViewController(): UIViewController =
+    fun makeViewController(oidcHost: IosOidcHost? = null): UIViewController =
         MainViewController(
             supabaseBackendOrigin = backendOrigin,
             configuredSupabaseClient = client,
+            oidcHost = oidcHost,
         )
 
     /** Returns false without touching auth state when the URL is not this sample's callback. */
@@ -70,15 +71,18 @@ internal fun routeIosSupabaseCallback(
     url: String,
     onAccepted: (NSURL) -> Unit,
 ): Boolean {
-    val nativeUrl = NSURL.URLWithString(url) ?: return false
-    if (nativeUrl.scheme != IOS_SUPABASE_CALLBACK_SCHEME || nativeUrl.host != IOS_SUPABASE_CALLBACK_HOST) {
-        return false
+    val nativeUrl = NSURL.URLWithString(url)
+    val accepted =
+        nativeUrl?.scheme == IOS_SUPABASE_CALLBACK_SCHEME &&
+            nativeUrl.host == IOS_SUPABASE_CALLBACK_HOST
+    if (accepted) {
+        onAccepted(checkNotNull(nativeUrl))
     }
-    onAccepted(nativeUrl)
-    return true
+    return accepted
 }
 
 @OptIn(SupabaseExperimental::class)
+@Suppress("LongParameterList") // Test-only overrides keep the production constructor credential-only.
 internal fun createIosSupabaseClient(
     supabaseUrl: String,
     supabasePublishableKey: String,

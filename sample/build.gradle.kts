@@ -60,6 +60,8 @@ kotlin {
         iosMain.dependencies {
             implementation(project(":auth-firebase"))
             implementation(project(":auth-supabase"))
+            implementation(libs.ktor.client.core)
+            implementation(libs.ktor.client.darwin)
         }
 
         iosTest.dependencies {
