@@ -11,9 +11,11 @@ import dev.siere.auth.DefaultDispatcherProvider
 import dev.siere.auth.DispatcherProvider
 import dev.siere.auth.PhoneVerificationSession
 import io.github.jan.supabase.SupabaseClient
+import io.github.jan.supabase.annotations.SupabaseExperimental
 import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.auth.OtpType
 import io.github.jan.supabase.auth.auth
+import io.github.jan.supabase.auth.event.AuthEvent
 import io.github.jan.supabase.auth.providers.Apple
 import io.github.jan.supabase.auth.providers.Google
 import io.github.jan.supabase.auth.providers.builtin.Email
@@ -29,11 +31,16 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.async
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.drop
+import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
@@ -224,6 +231,7 @@ internal class SupabaseAuthProviderImpl(
         client.auth.currentUserOrNull()?.toAuthUser()
             ?: error("Supabase completed authentication without a current user")
 
+    @OptIn(SupabaseExperimental::class)
     private suspend fun completeOAuthFlow(
         expectedProviderId: String,
         startFlow: suspend () -> Unit,
@@ -233,7 +241,11 @@ internal class SupabaseAuthProviderImpl(
                 // Subscribe before opening the browser so a fast redirect callback cannot race the collector.
                 val completion =
                     async(start = CoroutineStart.UNDISPATCHED) {
-                        awaitNextAuthenticatedUser(client.auth.sessionStatus, expectedProviderId = expectedProviderId)
+                        awaitNextOAuthResult(
+                            statuses = client.auth.sessionStatus,
+                            events = client.auth.events,
+                            expectedProviderId = expectedProviderId,
+                        )
                     }
                 try {
                     startFlow()
@@ -272,39 +284,68 @@ internal class SupabaseAuthProviderImpl(
     }
 }
 
-internal suspend fun awaitNextAuthenticatedUser(
+internal class AuthCompletionTimeoutException :
+    RuntimeException(
+        "Authentication did not complete before the timeout",
+    )
+
+internal class OAuthCallbackException(
+    val providerCode: String,
+) : RuntimeException("The OAuth provider returned an error")
+
+private sealed interface OAuthCompletion {
+    data class Success(
+        val user: AuthUser,
+    ) : OAuthCompletion
+
+    data class Failure(
+        val code: String,
+    ) : OAuthCompletion
+}
+
+@OptIn(SupabaseExperimental::class)
+internal suspend fun awaitNextOAuthResult(
     statuses: StateFlow<SessionStatus>,
+    events: SharedFlow<AuthEvent>,
     timeoutMillis: Long = 120_000,
     expectedProviderId: String? = null,
 ): AuthUser {
+    // supabase-kt replays the latest auth event. Only callbacks emitted after this attempt starts
+    // may complete it; otherwise one old cancellation poisons every later OAuth attempt.
+    val staleEvents = events.replayCache
     val initialUser =
         (statuses.value as? SessionStatus.Authenticated)
             ?.session
             ?.user
             ?.toAuthUser()
-    val authenticated =
+    val completion =
         withTimeoutOrNull(timeoutMillis) {
-            statuses
-                .drop(1)
-                .first { status ->
-                    val candidate =
-                        (status as? SessionStatus.Authenticated)
-                            ?.session
-                            ?.user
-                            ?.toAuthUser()
-                    candidate != null &&
-                        (status.isNew || candidate != initialUser) &&
-                        (expectedProviderId == null || expectedProviderId in candidate.providerIds)
-                }
+            merge(
+                statuses
+                    .drop(1)
+                    .mapNotNull { status ->
+                        val candidate =
+                            (status as? SessionStatus.Authenticated)
+                                ?.session
+                                ?.user
+                                ?.toAuthUser()
+                        candidate
+                            ?.takeIf {
+                                (status.isNew || candidate != initialUser) &&
+                                    (expectedProviderId == null || expectedProviderId in candidate.providerIds)
+                            }?.let(OAuthCompletion::Success)
+                    },
+                events
+                    .filter { event -> staleEvents.none { stale -> stale === event } }
+                    .filterIsInstance<AuthEvent.OtpError>()
+                    .map { OAuthCompletion.Failure(it.error) },
+            ).first()
         } ?: throw AuthCompletionTimeoutException()
-    return (authenticated as SessionStatus.Authenticated).session.user?.toAuthUser()
-        ?: error("Supabase authenticated without a user")
+    return when (completion) {
+        is OAuthCompletion.Success -> completion.user
+        is OAuthCompletion.Failure -> throw OAuthCallbackException(completion.code)
+    }
 }
-
-internal class AuthCompletionTimeoutException :
-    RuntimeException(
-        "Authentication did not complete before the timeout",
-    )
 
 internal fun UserInfo.toAuthUser(): AuthUser =
     AuthUser(

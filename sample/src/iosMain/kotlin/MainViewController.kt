@@ -17,6 +17,7 @@ import io.github.jan.supabase.SupabaseClient
 fun MainViewController(
     firebaseConfigured: Boolean = false,
     googleSignIn: GoogleSignInPresenter? = null,
+    supabaseBackendOrigin: String? = null,
     configuredSupabaseClient: SupabaseClient? = null,
 ) = ComposeUIViewController {
     SampleApp(
@@ -27,7 +28,7 @@ fun MainViewController(
             }
             if (configuredSupabaseClient != null) {
                 add(
-                    ProviderOption("Supabase") {
+                    ProviderOption("Supabase", backendOrigin = supabaseBackendOrigin) {
                         SupabaseAuthProvider(configuredSupabaseClient)
                     },
                 )

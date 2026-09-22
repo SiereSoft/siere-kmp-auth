@@ -9,6 +9,9 @@ import io.github.jan.supabase.exceptions.HttpRequestException
  * stable `error_code` values; the raw code is preserved in [AuthError.providerCode].
  */
 internal fun supabaseAuthError(failure: Throwable): AuthError {
+    if (failure is OAuthCallbackException) {
+        return supabaseAuthError(failure.providerCode, "OAuth callback failed")
+    }
     if (failure is AuthCompletionTimeoutException) {
         return AuthError.Network()
     }
@@ -29,6 +32,9 @@ internal fun supabaseAuthError(
     message: String,
 ): AuthError =
     when (code) {
+        "access_denied", "cancelled", "user_cancelled" ->
+            AuthError.Cancelled(providerCode = code)
+
         "invalid_credentials", "bad_jwt", "validation_failed" ->
             AuthError.InvalidCredentials(providerCode = code)
 

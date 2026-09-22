@@ -20,6 +20,7 @@ class SupabaseErrorMappingTest {
 
     @Test
     fun mapsProviderSessionRateLimitAndReauthenticationErrors() {
+        assertIs<AuthError.Cancelled>(mapped("access_denied"))
         assertIs<AuthError.ProviderDisabled>(mapped("provider_disabled"))
         assertIs<AuthError.Network>(mapped("over_request_rate_limit"))
         assertIs<AuthError.NotSignedIn>(mapped("session_expired"))
