@@ -4,11 +4,15 @@ import UIKit
 
 @main
 struct SiereAuthSampleApp: App {
+    private let oidcConfiguration = OidcHostConfiguration()
     private let configuration = SupabaseHostConfiguration.fromEnvironment()
 
     var body: some Scene {
         WindowGroup {
-            ComposeView(supabaseHost: configuration?.host)
+            ComposeView(
+                oidcHost: oidcConfiguration.host,
+                supabaseHost: configuration?.host
+            )
                 .ignoresSafeArea()
                 .onOpenURL { url in
                     _ = configuration?.host.handleOpenUrl(url: url.absoluteString)
@@ -18,21 +22,30 @@ struct SiereAuthSampleApp: App {
 }
 
 private struct ComposeView: UIViewControllerRepresentable {
+    let oidcHost: IosOidcHost
     let supabaseHost: IosSupabaseHost?
 
     func makeUIViewController(context: Context) -> UIViewController {
         if let supabaseHost {
-            return supabaseHost.makeViewController()
+            return supabaseHost.makeViewController(oidcHost: oidcHost)
         }
-        return MainViewControllerKt.MainViewController(
-            firebaseConfigured: false,
-            googleSignIn: nil,
-            supabaseBackendOrigin: nil,
-            configuredSupabaseClient: nil
-        )
+        return oidcHost.makeViewController()
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {}
+}
+
+private final class OidcHostConfiguration {
+    let host = IosOidcHost {
+        UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap(\.windows)
+            .first(where: \.isKeyWindow)
+    }
+
+    deinit {
+        host.close()
+    }
 }
 
 private final class SupabaseHostConfiguration {
