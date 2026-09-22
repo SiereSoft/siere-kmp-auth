@@ -1,8 +1,10 @@
-@file:Suppress("ktlint:standard:function-naming")
+@file:Suppress("FunctionNaming", "ktlint:standard:function-naming")
 
 import androidx.compose.ui.window.ComposeUIViewController
 import dev.siere.auth.firebase.FirebaseAuthProvider
 import dev.siere.auth.firebase.GoogleSignInPresenter
+import dev.siere.auth.oidc.OidcAuthProvider
+import dev.siere.auth.oidc.OidcConfiguration
 import dev.siere.auth.sample.ProviderOption
 import dev.siere.auth.sample.SampleApp
 import dev.siere.auth.sample.demoProviderOption
@@ -17,7 +19,9 @@ import io.github.jan.supabase.SupabaseClient
 fun MainViewController(
     firebaseConfigured: Boolean = false,
     googleSignIn: GoogleSignInPresenter? = null,
+    supabaseBackendOrigin: String? = null,
     configuredSupabaseClient: SupabaseClient? = null,
+    oidcHost: IosOidcHost? = null,
 ) = ComposeUIViewController {
     SampleApp(
         buildList {
@@ -27,8 +31,32 @@ fun MainViewController(
             }
             if (configuredSupabaseClient != null) {
                 add(
-                    ProviderOption("Supabase") {
+                    ProviderOption("Supabase", backendOrigin = supabaseBackendOrigin) {
                         SupabaseAuthProvider(configuredSupabaseClient)
+                    },
+                )
+            }
+            if (oidcHost != null) {
+                add(
+                    ProviderOption(
+                        name = "Local OIDC",
+                        backendOrigin = "http://127.0.0.1:8080",
+                        authenticatedCall = oidcHost::callProtectedEndpoint,
+                    ) {
+                        OidcAuthProvider(
+                            configuration =
+                                OidcConfiguration(
+                                    clientId = "siere-ios-oidc",
+                                    discoveryUrl =
+                                        "http://127.0.0.1:8080/realms/siere/" +
+                                            ".well-known/openid-configuration",
+                                    providerId = "keycloak",
+                                    allowInsecureHttpForTesting = true,
+                                ),
+                            redirectUri = iosOidcRedirectUri(),
+                            authorizationHandler = oidcHost.authorizationHandler,
+                            sessionStore = oidcHost.sessionStore,
+                        )
                     },
                 )
             }

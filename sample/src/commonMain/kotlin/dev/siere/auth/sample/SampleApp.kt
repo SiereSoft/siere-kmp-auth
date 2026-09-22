@@ -45,6 +45,7 @@ import kotlinx.coroutines.launch
 data class ProviderOption(
     val name: String,
     val backendOrigin: String? = null,
+    val authenticatedCall: (suspend (SiereAuth) -> AuthenticatedCallResult)? = null,
     val create: () -> AuthProvider,
 )
 
@@ -197,6 +198,10 @@ fun SampleApp(options: List<ProviderOption>) {
                     style = MaterialTheme.typography.titleMedium,
                 )
 
+                status?.let {
+                    Text(it, style = MaterialTheme.typography.bodyMedium)
+                }
+
                 ElevatedButton(onClick = { run { auth.signInWithGoogle() } }, modifier = buttonWidth()) {
                     Text("Sign in with Google")
                 }
@@ -230,6 +235,43 @@ fun SampleApp(options: List<ProviderOption>) {
                     },
                 ) {
                     Text("Get fresh session")
+                }
+
+                options.getOrNull(created.activeIndex)?.authenticatedCall?.let { authenticatedCall ->
+                    ElevatedButton(
+                        modifier = buttonWidth(),
+                        onClick = {
+                            scope.launch {
+                                status =
+                                    when (val result = authenticatedCall(auth)) {
+                                        is AuthenticatedCallResult.Success -> result.message
+                                        is AuthenticatedCallResult.AuthFailure -> result.error.userFacingMessage()
+                                        is AuthenticatedCallResult.HttpFailure ->
+                                            "Protected request failed with HTTP ${result.statusCode}"
+                                        is AuthenticatedCallResult.NetworkFailure -> result.message
+                                    }
+                            }
+                        },
+                    ) {
+                        Text("Call protected endpoint")
+                    }
+                }
+
+                ElevatedButton(
+                    modifier = buttonWidth(),
+                    onClick = {
+                        scope.launch {
+                            when (val result = auth.signOut()) {
+                                is AuthResult.Success -> {
+                                    phoneSession = null
+                                    status = null
+                                }
+                                is AuthResult.Failure -> status = result.error.userFacingMessage()
+                            }
+                        }
+                    },
+                ) {
+                    Text("Sign out")
                 }
 
                 OutlinedTextField(
@@ -327,27 +369,6 @@ fun SampleApp(options: List<ProviderOption>) {
                     ) {
                         Text("Verify code")
                     }
-                }
-
-                ElevatedButton(
-                    modifier = buttonWidth(),
-                    onClick = {
-                        scope.launch {
-                            when (val result = auth.signOut()) {
-                                is AuthResult.Success -> {
-                                    phoneSession = null
-                                    status = null
-                                }
-                                is AuthResult.Failure -> status = result.error.userFacingMessage()
-                            }
-                        }
-                    },
-                ) {
-                    Text("Sign out")
-                }
-
-                status?.let {
-                    Text(it, style = MaterialTheme.typography.bodyMedium)
                 }
             }
         }
