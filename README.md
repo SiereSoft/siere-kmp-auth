@@ -4,7 +4,7 @@ Provider-neutral authentication for Kotlin Multiplatform. Your application uses 
 identity, sessions, errors, and account linking, then supplies the Firebase, Supabase, or OpenID
 Connect adapter that fits its backend.
 
-The current release is **`0.2.0`**.
+The current release is **`0.2.1`**.
 
 ## Supported providers and targets
 
@@ -13,9 +13,9 @@ Provider-console or host-app configuration may still be required; follow the lin
 
 | Provider | Siere Auth version | Android | iOS | JVM | JavaScript | Wasm |
 |---|---:|:---:|:---:|:---:|:---:|:---:|
-| [Firebase](auth-firebase/README.md) | `0.2.0` | ✓ | ✓ | ✓ | ✓ | ✓ |
-| [Supabase](auth-supabase/README.md) | `0.2.0` | ✓ | ✓ | ✓ | ✓ | ✓ |
-| [OpenID Connect](auth-oidc/README.md) | `0.2.0` | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [Firebase](auth-firebase/README.md) | `0.2.1` | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [Supabase](auth-supabase/README.md) | `0.2.1` | ✓ | ✓ | ✓ | ✓ | ✓ |
+| [OpenID Connect](auth-oidc/README.md) | `0.2.1` | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 All multiplatform modules are built with Kotlin `2.4.10`. Android artifacts require API 30 or
 newer. The Firebase iOS integration is experimental and is verified with Xcode 26.2.
@@ -81,8 +81,8 @@ Add the core API and one provider adapter in `commonMain`:
 
 ```kotlin
 commonMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.2.0")
-    implementation("dev.siere.auth:auth-supabase:0.2.0") // or auth-firebase/auth-oidc
+    implementation("dev.siere.auth:auth-core:0.2.1")
+    implementation("dev.siere.auth:auth-supabase:0.2.1") // or auth-firebase/auth-oidc
 }
 ```
 
