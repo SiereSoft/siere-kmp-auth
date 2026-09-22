@@ -40,8 +40,8 @@ After adding the GitHub Packages repository from the [project installation guide
 
 ```kotlin
 commonMain.dependencies {
-    implementation("dev.siere.auth:auth-core:0.2.0")
-    implementation("dev.siere.auth:auth-oidc:0.2.0")
+    implementation("dev.siere.auth:auth-core:0.2.1")
+    implementation("dev.siere.auth:auth-oidc:0.2.1")
 }
 ```
 
