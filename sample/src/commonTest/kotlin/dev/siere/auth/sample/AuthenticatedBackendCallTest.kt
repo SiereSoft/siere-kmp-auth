@@ -3,10 +3,13 @@ package dev.siere.auth.sample
 import dev.siere.auth.AuthResult
 import dev.siere.auth.AuthSession
 import dev.siere.auth.AuthUser
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.test.runTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertIs
+import kotlin.test.assertSame
 
 class AuthenticatedBackendCallTest {
     @Test
@@ -62,6 +65,37 @@ class AuthenticatedBackendCallTest {
             assertEquals(1, sessionRequests)
             assertEquals(1, backendRequests)
             assertEquals(401, assertIs<AuthenticatedCallResult.HttpFailure>(result).statusCode)
+        }
+
+    @Test
+    fun requestExceptionIsReportedAsANetworkFailure() =
+        runTest {
+            val result =
+                authenticatedBackendCall(
+                    currentSession = { AuthResult.Success(session("token")) },
+                    request = { throw IllegalStateException("connection dropped") },
+                )
+
+            assertEquals(
+                "connection dropped",
+                assertIs<AuthenticatedCallResult.NetworkFailure>(result).message,
+            )
+        }
+
+    @Test
+    fun requestCancellationPropagates() =
+        runTest {
+            val cancellation = CancellationException("cancelled")
+
+            val thrown =
+                assertFailsWith<CancellationException> {
+                    authenticatedBackendCall(
+                        currentSession = { AuthResult.Success(session("token")) },
+                        request = { throw cancellation },
+                    )
+                }
+
+            assertSame(cancellation, thrown)
         }
 
     private fun session(accessToken: String) =

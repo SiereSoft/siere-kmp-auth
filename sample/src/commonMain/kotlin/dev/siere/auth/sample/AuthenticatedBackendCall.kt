@@ -3,7 +3,7 @@ package dev.siere.auth.sample
 import dev.siere.auth.AuthError
 import dev.siere.auth.AuthResult
 import dev.siere.auth.AuthSession
-import kotlinx.io.IOException
+import kotlinx.coroutines.CancellationException
 
 /** Result displayed by the sample's credentialed backend call. */
 sealed interface AuthenticatedCallResult {
@@ -57,6 +57,7 @@ internal suspend fun authenticatedBackendCall(
         }
     }
 
+@Suppress("TooGenericExceptionCaught") // The request boundary can throw platform-specific transport exceptions.
 private suspend fun executeBackendRequest(
     accessToken: String,
     request: suspend (String) -> SampleBackendResponse,
@@ -68,7 +69,9 @@ private suspend fun executeBackendRequest(
         } else {
             AuthenticatedCallResult.HttpFailure(response.statusCode)
         }
-    } catch (failure: IOException) {
+    } catch (cancellation: CancellationException) {
+        throw cancellation
+    } catch (failure: Exception) {
         AuthenticatedCallResult.NetworkFailure(failure.message ?: "The protected request failed")
     }
 
