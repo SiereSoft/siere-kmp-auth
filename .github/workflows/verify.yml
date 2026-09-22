@@ -31,7 +31,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: API, JVM, browser, and Android checks
         run: |
-          ./gradlew \
+          # Keep the JS and Wasm Yarn installs from racing to create their lockfiles.
+          ./gradlew --no-parallel \
             :auth-core:jvmTest :auth-core:jsBrowserTest :auth-core:wasmJsBrowserTest :auth-core:apiCheck \
             :auth-core:testDebugUnitTest \
             :auth-firebase:jvmTest :auth-firebase:jsBrowserTest :auth-firebase:wasmJsBrowserTest :auth-firebase:testDebugUnitTest :auth-firebase:apiCheck \

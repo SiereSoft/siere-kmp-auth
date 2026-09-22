@@ -27,7 +27,8 @@ jobs:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: test "v$(sed -n 's/^VERSION_NAME=//p' gradle.properties)" = "$RELEASE_TAG"
       - name: Publish Kotlin Multiplatform artifacts
-        run: ./gradlew publish --no-configuration-cache
+        # Avoid concurrent JS and Wasm Yarn installs during lockfile generation.
+        run: ./gradlew publish --no-configuration-cache --no-parallel
         env:
           GITHUB_ACTOR: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
