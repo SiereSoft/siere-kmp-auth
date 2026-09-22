@@ -80,13 +80,7 @@ class IosSupabaseIntegrationTest {
                 assertEquals("auth-callback", client.auth.config.host)
                 assertEquals(FlowType.PKCE, client.auth.config.flowType)
 
-                val user =
-                    assertIs<AuthResult.Success<AuthUser>>(
-                        auth.signInWithEmail("ios@example.com", "correct horse battery staple"),
-                    ).value
-                assertEquals("ios-test-user", user.uid)
-                assertEquals("ios@example.com", user.email)
-                assertEquals("ios-test-user", signedInState(auth).user.uid)
+                assertEmailSignIn(auth)
 
                 val refreshed =
                     assertIs<AuthResult.Success<AuthSession>>(
@@ -271,6 +265,16 @@ class IosSupabaseIntegrationTest {
         withContext(Dispatchers.Default) {
             assertIs(withTimeout(5_000) { auth.authState.first { it is AuthState.SignedIn } })
         }
+
+    private suspend fun assertEmailSignIn(auth: SiereAuth) {
+        val user =
+            assertIs<AuthResult.Success<AuthUser>>(
+                auth.signInWithEmail("ios@example.com", "correct horse battery staple"),
+            ).value
+        assertEquals("ios-test-user", user.uid)
+        assertEquals("ios@example.com", user.email)
+        assertEquals("ios-test-user", signedInState(auth).user.uid)
+    }
 
     private fun testClient(
         engine: MockEngine,
