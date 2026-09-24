@@ -1,8 +1,58 @@
 # Multiplatform sample
 
-The sample always includes the credential-free Demo provider. Provider-backed options only appear
-when their local configuration is present, so the repository does not contain API keys or test
-accounts.
+The sample always includes the credential-free Demo provider. Firebase and Supabase appear only
+when local configuration is present, so the repository contains no external API keys or hosted
+test accounts. The source-controlled `demo` account belongs only to the disposable local Keycloak
+fixture used by the OIDC samples.
+
+## Run OpenID Connect on Kotlin/JS
+
+The Kotlin/JS app includes a credential-free **Local OIDC** option backed by the disposable
+Keycloak realm in `sample-jvm-oidc`. It uses Authorization Code with PKCE, a browser popup, the
+callback `http://127.0.0.1:8081/oidc-callback.html`, and the library's in-memory session store.
+
+From the repository root, start a clean Keycloak realm and build the production browser bundle:
+
+```shell
+./gradlew :sample-jvm-oidc:keycloakDown
+./gradlew :sample-jvm-oidc:keycloakUp
+./gradlew :sample:jsBrowserDistribution
+```
+
+Serve that exact distribution from its registered origin:
+
+```shell
+python3 -m http.server 8081 --bind 127.0.0.1 \
+  --directory sample/build/dist/js/productionExecutable
+```
+
+Open `http://127.0.0.1:8081`, select **Local OIDC**, choose **Sign in with OpenID Connect**, and
+use:
+
+```text
+username: demo
+password: demo-password
+```
+
+The click reserves the popup before OIDC discovery begins, so normal popup protection can associate
+it with the user gesture. The callback document sends the complete callback URL only to the exact
+sample origin; the opener also checks the message origin, popup identity, payload shape, and callback
+path before passing it to the library. Closing the popup is reported as a normal cancellation.
+
+Choose **Get fresh session** to exercise token refresh, then **Sign out**. Reloading the page loses
+the session by design: the sample does not store access, refresh, or ID tokens in browser storage.
+
+Stop the disposable realm afterward:
+
+```shell
+./gradlew :sample-jvm-oidc:keycloakDown
+```
+
+This loopback HTTP setup is for local development only. A production browser client must use HTTPS,
+register its exact callback and allowed web origin with the identity provider, keep the callback
+message target and opener checks equally strict, and decide deliberately whether an audited secure
+persistence layer is appropriate. This sample does not implement full-page redirect fallback,
+silent iframe SSO, background refresh, or provider logout.
 
 ## Run OpenID Connect on iOS
 

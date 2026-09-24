@@ -11,3 +11,5 @@ google-services.json
 GoogleService-Info.plist
 xcuserdata/
 kotlin-js-store/
+.verified/runs/
+.verified/reviews/
