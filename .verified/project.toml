@@ -1,0 +1,64 @@
+schema_version = 1
+
+[project]
+name = "siere-kmp-auth-js-oidc-sample"
+
+[checks.js_sample]
+argv = ["./gradlew", "--no-parallel", ":sample:jsBrowserTest", ":sample:jsBrowserDistribution", ":sample-jvm-oidc:jvmTest"]
+cwd = "."
+timeout_seconds = 1200
+
+[checks.oidc_js]
+argv = ["./gradlew", "--no-parallel", ":auth-oidc:jsBrowserTest"]
+cwd = "."
+timeout_seconds = 900
+
+[checks.static_analysis]
+argv = ["./gradlew", "staticAnalysis"]
+cwd = "."
+timeout_seconds = 900
+
+[checks.secret_hygiene]
+argv = ["python3", "scripts/verify_no_secrets.py"]
+cwd = "."
+timeout_seconds = 120
+
+[checks.diff_hygiene]
+argv = ["git", "diff", "--check"]
+cwd = "."
+timeout_seconds = 60
+
+[checks.live_evidence]
+argv = ["python3", "scripts/verify_js_oidc_live_evidence.py"]
+cwd = "."
+timeout_seconds = 120
+
+[gates.targeted]
+checks = ["js_sample"]
+
+[gates.phase]
+checks = ["js_sample", "oidc_js", "static_analysis", "secret_hygiene", "diff_hygiene", "live_evidence"]
+require_git = true
+
+[gates.release]
+checks = ["js_sample", "oidc_js", "static_analysis", "secret_hygiene", "diff_hygiene", "live_evidence"]
+require_git = true
+require_clean = true
+require_commit = true
+require_no_blocking_claims = true
+
+[claims]
+blocking_statuses = ["open", "confirmed", "unresolved", "accepted"]
+
+# Local headless reviewers. Delete, disable, or replace entries to fit this machine.
+[agents.sol-reviewer]
+provider = "codex"
+model = "gpt-5.6-sol"
+timeout_seconds = 900
+optional = false
+
+[agents.claude-reviewer]
+provider = "claude"
+model = "opus"
+timeout_seconds = 900
+optional = true

@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "assignments": [
+    {
+      "task": "P1 and P2 implementation",
+      "agent": "/root",
+      "worktree": ".worktrees/js-oidc-sample",
+      "branch": "feature/js-oidc-sample",
+      "owned_paths": [
+        "sample/**",
+        "sample-jvm-oidc/keycloak/siere-realm.json",
+        "sample-jvm-oidc/src/jvmTest/**",
+        "README.md",
+        "docs/js-oidc-sample-evidence.md",
+        "docs/articles/**",
+        "scripts/verify_js_oidc_live_evidence.py",
+        ".verified/**",
+        "SPEC.md",
+        "BUILD_CONTRACT.md",
+        "PHASES.json"
+      ]
+    }
+  ]
+}

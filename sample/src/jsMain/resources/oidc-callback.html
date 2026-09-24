@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="referrer" content="no-referrer">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; base-uri 'none'; form-action 'none'">
+    <title>Completing sign-in</title>
+</head>
+<body>
+<script>
+    (() => {
+        const openerOrigin = "http://127.0.0.1:8081";
+        const callbackUrl = window.location.href;
+        window.history.replaceState(null, "", window.location.pathname);
+        if (window.opener) {
+            const message = { type: "siere-oidc-callback", version: 1, callbackUrl };
+            window.opener.postMessage(message, openerOrigin);
+        }
+    })();
+</script>
+</body>
+</html>

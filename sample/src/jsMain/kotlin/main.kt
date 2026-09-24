@@ -4,6 +4,8 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.window.ComposeViewport
 import dev.siere.auth.firebase.FirebaseAuthProvider
 import dev.siere.auth.firebase.FirebaseWebOptions
+import dev.siere.auth.oidc.OidcAuthProvider
+import dev.siere.auth.oidc.OidcConfiguration
 import dev.siere.auth.sample.ProviderOption
 import dev.siere.auth.sample.SampleApp
 import dev.siere.auth.sample.demoProviderOption
@@ -13,15 +15,19 @@ import dev.siere.auth.supabase.SupabaseAuthProvider
 import kotlinx.browser.document
 import kotlinx.browser.window
 import org.jetbrains.skiko.wasm.onWasmReady
+import org.w3c.dom.events.EventListener
 
 @OptIn(ExperimentalComposeUiApi::class)
 fun main() {
     onWasmReady {
         val body = document.body ?: return@onWasmReady
+        val oidcHost = BrowserOidcHost()
+        window.addEventListener("pagehide", EventListener { oidcHost.finish() })
         ComposeViewport(body) {
             SampleApp(
                 buildList {
                     add(demoProviderOption())
+                    add(localOidcProviderOption(oidcHost))
                     firebaseOptionsFromLocalStorage()?.let { options ->
                         add(
                             ProviderOption(
@@ -45,6 +51,26 @@ fun main() {
         }
     }
 }
+
+private fun localOidcProviderOption(host: BrowserOidcHost): ProviderOption =
+    ProviderOption(
+        name = "Local OIDC",
+        backendOrigin = "http://127.0.0.1:8080",
+        prepareOpenIdSignIn = host::prepare,
+        finishOpenIdSignIn = host::finish,
+    ) {
+        OidcAuthProvider(
+            configuration =
+                OidcConfiguration(
+                    clientId = JS_OIDC_CLIENT_ID,
+                    discoveryUrl = JS_OIDC_DISCOVERY_URL,
+                    providerId = "keycloak",
+                    allowInsecureHttpForTesting = true,
+                ),
+            redirectUri = JS_OIDC_REDIRECT_URI,
+            authorizationHandler = host.authorizationHandler,
+        )
+    }
 
 private fun firebaseOptionsFromLocalStorage(): FirebaseWebOptions? {
     val storage = window.localStorage

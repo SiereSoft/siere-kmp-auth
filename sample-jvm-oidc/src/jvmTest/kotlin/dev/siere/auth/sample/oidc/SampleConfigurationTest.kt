@@ -78,6 +78,7 @@ class SampleConfigurationTest {
                 }
         val jvmClient = clients.getValue("siere-jvm-oidc")
         val androidClient = clients.getValue("siere-android-oidc")
+        val jsClient = clients.getValue("siere-js-oidc")
         val user =
             realm
                 .getValue("users")
@@ -87,6 +88,7 @@ class SampleConfigurationTest {
 
         assertPublicPkceClient(jvmClient)
         assertPublicPkceClient(androidClient)
+        assertPublicPkceClient(jsClient)
         assertEquals(
             "http://127.0.0.1/callback",
             jvmClient
@@ -103,12 +105,32 @@ class SampleConfigurationTest {
                 .single()
                 .jsonPrimitive.content,
         )
+        assertEquals(
+            "http://127.0.0.1:8081/oidc-callback.html",
+            jsClient
+                .getValue("redirectUris")
+                .jsonArray
+                .single()
+                .jsonPrimitive.content,
+        )
+        assertEquals(
+            "http://127.0.0.1:8081",
+            jsClient
+                .getValue("webOrigins")
+                .jsonArray
+                .single()
+                .jsonPrimitive.content,
+        )
         assertEquals("demo", user.getValue("username").jsonPrimitive.content)
         assertEquals("demo@example.invalid", user.getValue("email").jsonPrimitive.content)
     }
 
     private fun assertPublicPkceClient(client: kotlinx.serialization.json.JsonObject) {
         assertEquals("true", client.getValue("publicClient").jsonPrimitive.content)
+        assertEquals("true", client.getValue("standardFlowEnabled").jsonPrimitive.content)
+        assertEquals("false", client.getValue("directAccessGrantsEnabled").jsonPrimitive.content)
+        assertEquals("false", client.getValue("implicitFlowEnabled").jsonPrimitive.content)
+        assertEquals("false", client.getValue("serviceAccountsEnabled").jsonPrimitive.content)
         assertEquals(
             "S256",
             client

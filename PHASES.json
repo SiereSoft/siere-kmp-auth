@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "phases": [
+    {
+      "id": "P1",
+      "title": "Implement and verify the Kotlin/JS OIDC sample",
+      "depends_on": [],
+      "acceptance": [
+        "JS popup and callback boundary satisfy SPEC.md",
+        "Keycloak fixture and sample documentation cover the JS client",
+        "Automated JS and fixture gates pass",
+        "Live browser sign-in, forced refresh, and sign-out pass"
+      ],
+      "owned_paths": [
+        "sample/**",
+        "sample-jvm-oidc/keycloak/siere-realm.json",
+        "sample-jvm-oidc/src/jvmTest/**",
+        "README.md"
+      ],
+      "status": "complete"
+    },
+    {
+      "id": "P2",
+      "title": "Write the verified Kotlin/JS OIDC article",
+      "depends_on": ["P1"],
+      "acceptance": [
+        "Article matches the established series voice",
+        "All technical and test claims are backed by P1 evidence",
+        "Article points to maintained library instructions without a fixed version"
+      ],
+      "owned_paths": ["docs/articles/**"],
+      "status": "complete"
+    }
+  ]
+}

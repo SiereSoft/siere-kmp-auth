@@ -100,14 +100,14 @@ Continue with the provider you chose:
 | `auth-firebase` | Firebase adapter using GitLive on Android/JVM/JS/iOS and Firebase JS bindings on Wasm. |
 | `auth-supabase` | Supabase Auth adapter with a matching Ktor engine for each target. |
 | `auth-oidc` | Multiplatform OIDC public client with discovery, PKCE, signed token validation, refresh, and host-owned redirect/storage integration. |
-| `sample` | Compose Multiplatform sample with a credential-free Demo provider and local Android OIDC flow. |
+| `sample` | Compose Multiplatform sample with Demo and local Android, iOS, and Kotlin/JS OIDC flows. |
 | `sample-jvm-oidc` | Compose Desktop OIDC sample with a disposable local Keycloak realm. |
 
 ## Samples
 
-The multiplatform sample uses the in-memory **Demo** provider on most targets and a disposable local
-Keycloak client on Android. It contains no Siere API keys, Firebase files, or Supabase projects; the
-source-controlled Android OIDC client and demo account are only for the loopback development realm.
+The multiplatform sample uses the in-memory **Demo** provider and disposable local Keycloak clients
+on Android, iOS, and Kotlin/JS. It contains no Siere API keys, Firebase files, or Supabase projects;
+the source-controlled OIDC clients and demo account are only for the loopback development realm.
 
 ```shell
 ./gradlew :sample:jsBrowserDistribution :sample:wasmJsBrowserDistribution
@@ -124,6 +124,7 @@ The standalone OIDC sample runs against a local Keycloak realm and needs no exte
 ```
 
 See the [JVM OIDC sample guide](sample-jvm-oidc/README.md) for its demo account and cleanup command.
+The [multiplatform sample guide](sample/README.md) includes the Kotlin/JS popup and callback setup.
 
 ## Verification
 

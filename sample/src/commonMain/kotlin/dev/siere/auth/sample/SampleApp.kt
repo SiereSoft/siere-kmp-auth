@@ -46,6 +46,8 @@ data class ProviderOption(
     val name: String,
     val backendOrigin: String? = null,
     val authenticatedCall: (suspend (SiereAuth) -> AuthenticatedCallResult)? = null,
+    val prepareOpenIdSignIn: (() -> AuthError?)? = null,
+    val finishOpenIdSignIn: (() -> Unit)? = null,
     val create: () -> AuthProvider,
 )
 
@@ -115,6 +117,7 @@ fun SampleApp(options: List<ProviderOption>) {
     var phoneNumber by remember { mutableStateOf("") }
     var phoneSession by remember(auth) { mutableStateOf<PhoneVerificationSession?>(null) }
     var smsCode by remember { mutableStateOf("") }
+    var openIdSignInInProgress by remember(auth) { mutableStateOf(false) }
 
     LaunchedEffect(state.value, phoneSession) {
         val session = phoneSession ?: return@LaunchedEffect
@@ -208,7 +211,30 @@ fun SampleApp(options: List<ProviderOption>) {
                 ElevatedButton(onClick = { run { auth.signInWithApple() } }, modifier = buttonWidth()) {
                     Text("Sign in with Apple")
                 }
-                ElevatedButton(onClick = { run { auth.signInWithOpenId() } }, modifier = buttonWidth()) {
+                ElevatedButton(
+                    enabled = !openIdSignInInProgress,
+                    onClick = {
+                        val option = options.getOrNull(created.activeIndex)
+                        val preparationError = option?.prepareOpenIdSignIn?.invoke()
+                        if (preparationError != null) {
+                            status = preparationError.userFacingMessage()
+                        } else {
+                            openIdSignInInProgress = true
+                            scope.launch {
+                                try {
+                                    when (val result = auth.signInWithOpenId()) {
+                                        is AuthResult.Success -> status = null
+                                        is AuthResult.Failure -> status = result.error.userFacingMessage()
+                                    }
+                                } finally {
+                                    option?.finishOpenIdSignIn?.invoke()
+                                    openIdSignInInProgress = false
+                                }
+                            }
+                        }
+                    },
+                    modifier = buttonWidth(),
+                ) {
                     Text("Sign in with OpenID Connect")
                 }
                 ElevatedButton(onClick = { run { auth.signInAnonymously() } }, modifier = buttonWidth()) {

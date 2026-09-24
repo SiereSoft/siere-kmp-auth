@@ -78,6 +78,31 @@
         "email"
       ],
       "optionalClientScopes": []
+    },
+    {
+      "clientId": "siere-js-oidc",
+      "name": "Siere Kotlin/JS OIDC sample",
+      "enabled": true,
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "implicitFlowEnabled": false,
+      "serviceAccountsEnabled": false,
+      "frontchannelLogout": false,
+      "redirectUris": [
+        "http://127.0.0.1:8081/oidc-callback.html"
+      ],
+      "webOrigins": [
+        "http://127.0.0.1:8081"
+      ],
+      "attributes": {
+        "pkce.code.challenge.method": "S256"
+      },
+      "defaultClientScopes": [
+        "profile",
+        "email"
+      ],
+      "optionalClientScopes": []
     }
   ],
   "users": [
